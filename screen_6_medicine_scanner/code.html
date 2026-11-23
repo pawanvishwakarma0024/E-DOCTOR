@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#faf8ff", "on-error-container": "#93000a", "secondary-fixed-dim": "#c3c0ff", "on-primary-fixed-variant": "#00504a", "on-primary-fixed": "#00201d", "on-secondary": "#ffffff", "surface-tint": "#006a63", "on-secondary-container": "#fffbff", "error-container": "#ffdad6", "primary-fixed-dim": "#80d5cb", "outline": "#6e7977", "outline-variant": "#bdc9c6", "primary-container": "#0f766e", "surface-container-low": "#f2f3ff", "on-surface": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container": "#eaedff", "error": "#ba1a1a", "surface-variant": "#dae2fd", "inverse-surface": "#283044", "inverse-on-surface": "#eef0ff", "secondary-fixed": "#e3dfff", "on-secondary-fixed-variant": "#372abf", "surface-container-lowest": "#ffffff", "tertiary": "#005683", "tertiary-fixed-dim": "#93ccff", "on-primary-container": "#a3faef", "surface-container-highest": "#dae2fd", "on-surface-variant": "#3e4947", "on-secondary-fixed": "#100069", "on-error": "#ffffff", "secondary": "#4e45d5", "on-primary": "#ffffff", "surface-dim": "#d2d9f4", "on-tertiary-container": "#dbecff", "secondary-container": "#6860ef", "on-tertiary-fixed-variant": "#004b73", "on-background": "#131b2e", "on-tertiary-fixed": "#001d31", "primary": "#005c55", "primary-fixed": "#9cf2e8", "surface-bright": "#faf8ff", "inverse-primary": "#80d5cb", "tertiary-fixed": "#cce5ff", "surface": "#faf8ff", "on-tertiary": "#ffffff", "tertiary-container": "#006fa8" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-mobile": "1rem", "space-xl": "2.5rem", "margin": "2rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "space-sm": "0.5rem", "gutter-mobile": "1rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.025em", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#faf8ff;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="E Doctor Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1X-mUWjEJvsqVtWhdJZwwuEZBn8e5CPlp4nIQ0vhFZ4fNn88u5hsH7kHDN5wVMqOnlp_QOoMAqKCULCV0YDAJMZVj_wBR4oT9ZKQFb07oa2i4aiWwimGfjxart9URAusRQiIZQyLi0-rPDPcnI88doPL_HPGOHhzVEo3OAnc9gfWVvL9Av06Lk2e8tzjDCSWgmlETuH3ZeAYkw9FPcaEEO4y24X2ViggiwUbZTLvA4FSSFQLUu98QKWbKbf"/><div class="flex flex-col min-w-0"><span class="font-title-sm text-title-sm text-primary leading-tight truncate">E Doctor</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Scan</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><a aria-label="Quick emergency triage help" class="h-11 px-space-sm rounded-full bg-error-container text-on-error-container flex items-center gap-space-xs font-label-md text-label-md transition-colors" data-path="emergency-assistance" href="#"><span class="material-symbols-outlined text-[20px]">e911_emergency</span><span class="hidden xs:inline font-label-md text-label-md">SOS</span></a><button aria-label="Profile view" class="w-11 h-11 flex items-center justify-center rounded-full" type="button"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClZsp_EiaF1ZvicMqZ3Ll_iSYYyM9AhzlHdwz-XPPOp5trkjaQpZ_LAhU3Ehk3Kfr-DAn2Gti_Po9rAMHrB4Ty-QZ6wH0yATpDG_KqEGzgqfFIwuDbDUXKci7jcp6XCF6MFM8O58pNEyIg4hWEyCfv2n2bMHoDcgW-Lr8l0KRjAVxLFDSKZagL9QRDWXjguE_hdPd1_Z1x6zDzW-z0T-yA8yAgb9IlIdFLU2aB1ApEJ0oflinLqgHewQ"/></button></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-24"><div class="flex flex-col w-full pb-8">
+<div class="px-gutter-mobile pt-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="tracking-wide uppercase">AI Packaging Verification</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+        Take a clear, well-lit photo of the medicine box, foil strip, or bottle label showing the batch number and expiry date.
+      </p>
+<div class="mt-space-sm flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">light_mode</span>
+<span>Best results in bright, natural light without flash reflection</span>
+</div>
+</div>
+</div>
+<div class="px-gutter-mobile mt-space-md flex flex-col gap-space-md">
+<div class="relative overflow-hidden rounded-xl bg-surface-container shadow-md flex flex-col min-h-[310px]" id="captureZone">
+<div class="relative w-full h-[320px] bg-inverse-surface overflow-hidden" id="previewContainer">
+<img class="w-full h-full object-cover object-center opacity-90 transition-transform duration-500 hover:scale-105" data-alt="Close-up crisp clinical photograph of Augmentin 625 Duo pharmaceutical blister foil pack and paper box on a white sterile medical desk. High clarity, studio lighting, visible printed batch lot BN-88392-X and crisp expiration stamp, macro pharmaceutical detailing with teal accent reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwIQfSzSn3wsvS7ONal9e3219s6LYB19gs5kD6gOZvNLS6RPuTNPxaU4746SxiYAL9H0fwYY3zg0AIH-We1ebHvIcnmrEmjpMVJ3IuRCAUCL6VRCVfV_HrAL7ftleXLcxBeTrKGdcKIolivtjfmRx2x8Q_iMtSX5qKroBQyHusr7pfj9m6IHqiXY7b-6ygEL80PuVzdQwwDc0ZL5vVxtTVeDVg5RiKR6CE-yyDCwdYhH_wjd3tTWr7hw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-inverse-surface/40 via-transparent to-inverse-surface/80 pointer-events-none"></div>
+<div class="absolute inset-4 pointer-events-none flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-7 h-7 border-t-2 border-l-2 border-primary-fixed rounded-tl"></div>
+<div class="w-7 h-7 border-t-2 border-r-2 border-primary-fixed rounded-tr"></div>
+</div>
+<div class="absolute inset-x-8 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
+<div class="w-full h-24 border border-dashed border-primary-fixed-dim/70 rounded-lg flex items-center justify-center backdrop-blur-[1px] bg-primary/10">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-inverse-surface/85 text-on-primary-fixed font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed animate-pulse">center_focus_strong</span>
+<span>Batch &amp; Expiry Aligned</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="w-7 h-7 border-b-2 border-l-2 border-primary-fixed rounded-bl"></div>
+<div class="w-7 h-7 border-b-2 border-r-2 border-primary-fixed rounded-br"></div>
+</div>
+</div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Live Focus Locked</span>
+</div>
+<button aria-label="Retake packaging image" class="absolute top-3 right-3 h-8 px-2.5 rounded-full bg-inverse-surface/80 hover:bg-inverse-surface text-inverse-on-surface backdrop-blur-md flex items-center gap-1 font-label-sm text-label-sm transition-all" id="retakeBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">flip_camera_ios</span>
+<span>Retake</span>
+</button>
+<div class="absolute bottom-3 inset-x-3 flex items-center justify-between px-space-sm py-2 rounded-lg bg-surface-container-lowest/95 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-primary">switch_account</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface truncate">Optical Sharpness</span>
+<span class="font-body-sm text-body-sm text-primary font-semibold">94% • Optimal</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+            AI Verified
+          </span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low flex items-center justify-between gap-space-sm">
+<button class="flex-1 h-10 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-xs font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">photo_camera</span>
+<span>Open Camera</span>
+</button>
+<button class="flex-1 h-10 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-xs font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">photo_library</span>
+<span>Browse Gallery</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">Image Clarity Analyzed</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">94% Sharpness</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-700 ease-out" style="width: 94%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+          Characters readable
+        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+          Zero glare glare
+        </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container-low transition-colors" id="toggleManualBtn" type="button">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Manual Entry Mode</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">For damaged labels or faint stamps</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs flex-shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm" id="manualBadge">
+            Auto-Filled
+          </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="chevronIcon">
+            expand_less
+          </span>
+</div>
+</button>
+<div class="p-space-md pt-0 flex flex-col gap-space-md" id="manualForm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="medName">Medicine Name</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3.5 pr-9 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-all" id="medName" type="text" value="Augmentin 625 Duo"/>
+<span class="material-symbols-outlined absolute right-3 text-[18px] text-primary pointer-events-none">verified</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="manufacturer">Manufacturer</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3.5 pr-9 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-all" id="manufacturer" type="text" value="GlaxoSmithKline Pharmaceuticals"/>
+<span class="material-symbols-outlined absolute right-3 text-[18px] text-primary pointer-events-none">apartment</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="batchNo">Batch / Lot No</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md font-mono placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-all" id="batchNo" type="text" value="BN-88392-X"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="expiryDate">Expiry Date</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3.5 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none transition-all" id="expiryDate" type="text" value="11/2026"/>
+<span class="material-symbols-outlined absolute right-2.5 text-[18px] text-on-surface-variant pointer-events-none">event</span>
+</div>
+</div>
+</div>
+<button class="w-full h-11 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-space-xs font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[20px]">barcode_scanner</span>
+<span>Scan 2D Barcode / DataMatrix</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">security_update_warning</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Safety &amp; Compliance Notice</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+          Ensure the text is fully legible. Blurred photos will require manual verification by a certified clinical pharmacist.
+        </p>
+</div>
+</div>
+<div class="pt-space-xs flex flex-col gap-space-sm">
+<button class="w-full h-12 rounded-xl bg-primary-container text-on-primary font-title-sm text-title-sm shadow-md hover:bg-primary transition-all flex items-center justify-center gap-space-xs active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+<span>Analyze Packaging Authenticity</span>
+</button>
+<div class="flex items-center justify-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">lock</span>
+<span>End-to-End HIPAA Encrypted Telemetry</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initMedicineScanner() {
+    const toggleBtn = document.getElementById('toggleManualBtn');
+    const manualForm = document.getElementById('manualForm');
+    const chevronIcon = document.getElementById('chevronIcon');
+    const manualBadge = document.getElementById('manualBadge');
+    const retakeBtn = document.getElementById('retakeBtn');
+
+    let isOpen = true;
+
+    if (toggleBtn && manualForm && chevronIcon) {
+      toggleBtn.addEventListener('click', () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+          manualForm.classList.remove('hidden');
+          chevronIcon.style.transform = 'rotate(0deg)';
+          if (manualBadge) manualBadge.textContent = 'Auto-Filled';
+        } else {
+          manualForm.classList.add('hidden');
+          chevronIcon.style.transform = 'rotate(180deg)';
+          if (manualBadge) manualBadge.textContent = 'Collapsed';
+        }
+      });
+    }
+
+    if (retakeBtn) {
+      retakeBtn.addEventListener('click', () => {
+        const preview = document.getElementById('previewContainer');
+        if (preview) {
+          preview.classList.add('opacity-75');
+          setTimeout(() => preview.classList.remove('opacity-75'), 200);
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-between items-center h-16 px-space-xs"><a class="flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 text-on-surface-variant transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">local_hospital</span><span class="font-label-sm text-label-sm mt-0.5">Home</span></a><a aria-current="page" class="flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 transition-colors text-primary font-semibold" data-path="scan" href="#"><span class="material-symbols-outlined text-[22px]">qr_code_scanner</span><span class="font-label-sm text-label-sm mt-0.5">Scan</span></a><a class="flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 text-on-surface-variant transition-colors" data-path="prices" href="#"><span class="material-symbols-outlined text-[22px]">price_check</span><span class="font-label-sm text-label-sm mt-0.5">Prices</span></a><a class="flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 text-on-surface-variant transition-colors" data-path="rx-reader" href="#"><span class="material-symbols-outlined text-[22px]">document_scanner</span><span class="font-label-sm text-label-sm mt-0.5">Rx Reader</span></a><a class="flex-1 flex flex-col items-center justify-center min-h-[44px] min-w-[44px] py-1 text-on-surface-variant transition-colors" data-path="symptoms" href="#"><span class="material-symbols-outlined text-[22px]">psychology_alt</span><span class="font-label-sm text-label-sm mt-0.5">Symptoms</span></a></div></nav></body></html>

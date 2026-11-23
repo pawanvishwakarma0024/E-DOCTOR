@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-container": "#fdfcff", "tertiary-fixed-dim": "#b9c8db", "on-secondary": "#ffffff", "inverse-surface": "#213145", "surface-bright": "#f8f9ff", "primary-container": "#2170e4", "on-surface-variant": "#424754", "on-primary-fixed": "#001a42", "tertiary": "#4f5d6e", "primary-fixed": "d8e2ff", "primary-fixed-dim": "#adc6ff", "on-primary": "#ffffff", "surface-dim": "#cbdbf5", "secondary": "#565e74", "on-surface": "#0b1c30", "outline": "#727785", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "background": "#f8f9ff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#004395", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#0e1d2b", "inverse-on-surface": "#eaf1ff", "on-primary-container": "#fefcff", "inverse-primary": "#adc6ff", "outline-variant": "#c2c6d6", "primary": "#0058be", "on-secondary-fixed": "#131b2e", "on-secondary-fixed-variant": "#3f465c", "surface-container-high": "#dce9ff", "surface": "#f8f9ff", "on-background": "#0b1c30", "secondary-fixed": "#dae2fd", "error": "#ba1a1a", "surface-container-low": "#eff4ff", "tertiary-container": "#677687", "on-tertiary-fixed-variant": "#3a4858", "secondary-fixed-dim": "#bec6e0", "secondary-container": "#dae2fd", "surface-tint": "#005ac2", "on-error": "#ffffff", "tertiary-fixed": "#d5e4f8", "on-error-container": "#93000a", "on-secondary-container": "#5c647a", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "gutter-mobile": "1rem", "space-sm": "0.5rem", "margin": "2rem", "space-xl": "2rem", "margin-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "body-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.01em", fontWeight: "400" }], "display-lg-mobile": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["3rem", { lineHeight: "3.5rem", letterSpacing: "-0.025em", fontWeight: "700" }], "body-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0", fontWeight: "400" }], "headline-md": ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "600" }], "body-lg": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0", fontWeight: "400" }], "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-xl-mobile": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "headline-lg": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "label-sm": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.04em", fontWeight: "700" }], "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }], "headline-sm": ["1.125rem", { lineHeight: "1.5rem", letterSpacing: "-0.005em", fontWeight: "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Go back" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface truncate max-w-[200px]">Medicine Information &amp; Safety Detail</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Clinical Help" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">help_outline</span></button><button aria-label="Clinical Safety Alert" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">verified_user</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface px-gutter-mobile min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Disclaimer Notice Banner -->
+<div class="w-full bg-secondary-container text-on-secondary-container px-space-md py-space-xs rounded-lg flex items-center justify-between gap-space-xs mb-space-md shadow-sm">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+<span class="font-label-sm text-label-sm tracking-wider uppercase font-semibold truncate">CLINICAL REFERENCE DEMO DATA • NOT PRESCRIPTION INSTRUCTIONS</span>
+</div>
+<span class="material-symbols-outlined text-[16px] opacity-70 flex-shrink-0">info</span>
+</div>
+<!-- Primary Medicine Overview Card -->
+<div class="relative w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-primary/5 rounded-full pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-md mb-space-sm">
+<div class="flex-1 min-w-0">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm mb-space-xs">
+<span class="material-symbols-outlined text-[14px]">medication</span>
+<span>Rx Only • Antibacterial</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight tracking-tight">Augmentin 625 Duo</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-0.5">Film-Coated Tablet • Oral Suspension Grade</p>
+</div>
+<!-- Interactive Bookmark & Share quick toggles -->
+<div class="flex items-center gap-space-xs">
+<button aria-label="Bookmark medicine" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" id="bookmarkBtn" onclick="toggleBookmark()">
+<span class="material-symbols-outlined text-[20px]" id="bookmarkIcon">bookmark_border</span>
+</button>
+<button aria-label="Share clinical sheet" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" onclick="shareDrugInfo()">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Active Formula Split -->
+<div class="bg-surface-container-low rounded-lg p-space-md my-space-md flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Active Composition Ratio</span>
+<div class="flex items-baseline justify-between gap-space-sm">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Amoxicillin Trihydrate</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">500 mg</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[80%]"></div>
+<div class="bg-primary-container h-full w-[20%]"></div>
+</div>
+<div class="flex items-baseline justify-between gap-space-sm pt-0.5">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Potassium Clavulanate</span>
+<span class="font-label-lg text-label-lg font-bold text-primary-container">125 mg</span>
+</div>
+</div>
+<!-- Clinical Details Grid -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="bg-surface-container rounded-lg p-space-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Class</p>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface mt-0.5">Beta-Lactamase Inhibitor</p>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Monograph</p>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface mt-0.5">USP / BP Standard</p>
+</div>
+</div>
+</div>
+<!-- Anchor Tabs Slider (Horizontal Sticky-like Scroll) -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-1 mb-space-lg">
+<button class="tab-pill active px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md whitespace-nowrap shadow-sm transition-all flex items-center gap-1" onclick="scrollToSection('indications')">
+<span class="material-symbols-outlined text-[16px]">stethoscope</span> Indications
+    </button>
+<button class="tab-pill px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-all flex items-center gap-1" onclick="scrollToSection('contraindications')">
+<span class="material-symbols-outlined text-[16px]">warning</span> Warnings
+    </button>
+<button class="tab-pill px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-all flex items-center gap-1" onclick="scrollToSection('side-effects')">
+<span class="material-symbols-outlined text-[16px]">monitoring</span> Reactions
+    </button>
+<button class="tab-pill px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-all flex items-center gap-1" onclick="scrollToSection('interactions')">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span> Interactions
+    </button>
+<button class="tab-pill px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-all flex items-center gap-1" onclick="scrollToSection('storage')">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span> Storage
+    </button>
+</div>
+<!-- SECTION 1: Approved Therapeutic Indications -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg" id="indications">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">healing</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Approved Indications</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">4 Core Targets</span>
+</div>
+<div class="grid grid-cols-1 gap-space-sm">
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">air</span>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Lower Respiratory Infections</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Community-acquired acute pneumonia, bacterial exacerbation of chronic bronchitis.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">hearing</span>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">ENT / Sinonasal Pathologies</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Acute bacterial sinusitis, recurrent otitis media resistant to standard monotherapy.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">coronavirus</span>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Skin &amp; Subcutaneous Tissue</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Cellulitis, animal bite wounds, severe dental abscess with spreading cellulitis.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">water_drop</span>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Genitourinary Tract Infections</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Recurrent cystitis and pyelonephritis documented susceptible on antibiogram.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Critical Safety Warnings & Contraindications -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg" id="contraindications">
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">crisis_alert</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Safety Warnings &amp; Triage</h3>
+</div>
+<!-- Penicillin Box Alert -->
+<div class="bg-error-container text-on-error-container p-space-md rounded-xl mb-space-md shadow-sm">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="material-symbols-outlined text-error text-[22px]">emergency</span>
+<span class="font-label-lg text-label-lg font-bold text-error uppercase">Absolute Contraindication</span>
+</div>
+<p class="font-body-md text-body-md font-bold mb-space-xs">Penicillin / Beta-Lactam Hypersensitivity</p>
+<p class="font-body-sm text-body-sm leading-relaxed">
+        Immediate risk of fatal anaphylaxis, Stevens-Johnson syndrome (SJS), or severe angioedema in patients with documented history of penicillin allergy or cephalosporin cross-reactivity.
+      </p>
+</div>
+<!-- Secondary Precautions Accordion -->
+<div class="space-y-space-sm">
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-md text-body-md font-semibold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary">science</span> Hepatic Impairment
+          </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full">Caution</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          History of clavulanate-associated cholestatic jaundice requires alternative prescribing. Monitor liver enzymes during extended regimens beyond 14 days.
+        </p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-md text-body-md font-semibold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary">monitor_heart</span> Renal Clearance Adjustment
+          </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full">GFR &lt; 30 mL/min</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Do not administer 625 Duo formula to patients with GFR below 30 mL/min due to inappropriate clavulanate to amoxicillin ratio for reduced clearance schedules.
+        </p>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Side Effect Prevalence Breakdown -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg" id="side-effects">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">insert_chart</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Incidence &amp; Adverse Profile</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clinical Trial Cohort</span>
+</div>
+<!-- Metric Progress Bars -->
+<div class="space-y-space-md">
+<div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Diarrhea / Loose Stools</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">9.0% (Common)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Nausea &amp; Epigastric Discomfort</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">3.0% (Common)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 14%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Cutaneous Rash / Urticaria</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">1.2% (Moderate)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 7%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">C. Difficile Pseudomembranous Colitis</span>
+<span class="font-label-sm text-label-sm font-bold text-error">&lt; 0.1% (Rare Critical)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 2%;"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary">lightbulb</span>
+<p class="font-body-sm text-body-sm">Administering at the start of a meal significantly minimizes gastrointestinal intolerance.</p>
+</div>
+</div>
+<!-- SECTION 4: Drug-Drug Interaction Checker Matrix -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg" id="interactions">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">mediation</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Interaction Matrix</h3>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline" onclick="toggleAllInteractions()">Expand All</button>
+</div>
+<div class="space-y-space-sm">
+<!-- Item 1: Warfarin -->
+<div class="bg-surface-container-low rounded-lg p-space-md">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Warfarin / Coumarin Anticoagulants</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Pharmacodynamic Potentiation</p>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold flex-shrink-0">
+            Moderate
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+          May prolong prothrombin time and increase INR. Closely monitor international normalized ratio during co-prescription.
+        </p>
+</div>
+<!-- Item 2: Probenecid -->
+<div class="bg-surface-container-low rounded-lg p-space-md">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Probenecid</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Renal Clearance Inhibition</p>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold flex-shrink-0">
+            Significant
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+          Reduces renal tubular secretion of amoxicillin, resulting in sustained higher serum concentrations. Concomitant use not recommended.
+        </p>
+</div>
+<!-- Item 3: Methotrexate -->
+<div class="bg-surface-container-low rounded-lg p-space-md">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Methotrexate</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Competitive Excretion</p>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold flex-shrink-0">
+            Monitor
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+          Penicillins may reduce methotrexate clearance, leading to elevated potential for hematologic toxicity.
+        </p>
+</div>
+</div>
+</div>
+<!-- SECTION 5: Storage & Administration Guidelines -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg" id="storage">
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">sanitizer</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Administration &amp; Storage</h3>
+</div>
+<div class="grid grid-cols-1 gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">thermostat</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Store Below 25°C (77°F)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Keep sealed in original protective aluminum blister. Clavulanic acid is hygroscopic and degrades quickly upon ambient moisture exposure.
+          </p>
+</div>
+</div>
+<div class="flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Course Completion Protocol</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Full 5-10 day regimen must be finished even if acute symptoms resolve early, minimizing bacterial tolerance emergence.
+          </p>
+</div>
+</div>
+<div class="flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Meal-Coordinated Ingestion</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Swallow whole with a full glass of water at the exact onset of meals. Do not chew or crush delayed release cores.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Medical Legal Disclaimer Footer Box -->
+<div class="w-full bg-surface-container-high text-on-surface-variant p-space-md rounded-xl text-center flex flex-col items-center gap-space-xs">
+<span class="material-symbols-outlined text-[22px] text-tertiary">gavel</span>
+<p class="font-body-sm text-body-sm leading-relaxed max-w-sm">
+      Information derived from national drug formularies for educational clinical reference. Never start, stop, or adjust prescription medication without consulting a licensed physician or clinical pharmacist.
+    </p>
+<span class="font-label-sm text-label-sm text-outline mt-1 font-mono">CODE: RX-NDC-0029-6086-12</span>
+</div>
+</div>
+<script>
+  // Bookmark button state toggle micro-interaction
+  function toggleBookmark() {
+    const icon = document.getElementById('bookmarkIcon');
+    const isBookmarked = icon.innerText === 'bookmark';
+    if (isBookmarked) {
+      icon.innerText = 'bookmark_border';
+      icon.style.fontVariationSettings = "'FILL' 0";
+    } else {
+      icon.innerText = 'bookmark';
+      icon.style.fontVariationSettings = "'FILL' 1";
+    }
+  }
+
+  // Native web share or fallback alert
+  function shareDrugInfo() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Augmentin 625 Duo Clinical Monograph',
+        text: 'Review drug indications, interactions, and dosage warnings on E Doctor.',
+        url: window.location.href,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(window.location.href);
+      alert('Drug summary reference copied to clipboard.');
+    }
+  }
+
+  // Smooth scroll to card anchors and update active pill styling
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Dynamic pill active state highlighting on click
+  document.querySelectorAll('.tab-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.tab-pill').forEach(p => {
+        p.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        p.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+      });
+      this.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+      this.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+    });
+  });
+
+  function toggleAllInteractions() {
+    // Quick micro-delight visual pulse
+    const matrix = document.getElementById('interactions');
+    if (matrix) {
+      matrix.classList.add('scale-[0.99]');
+      setTimeout(() => matrix.classList.remove('scale-[0.99]'), 150);
+    }
+  }
+</script></main><script src="nav.js"></script></body></html>

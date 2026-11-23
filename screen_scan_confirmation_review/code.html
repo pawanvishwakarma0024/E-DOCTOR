@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-container": "#fdfcff", "tertiary-fixed-dim": "#b9c8db", "on-secondary": "#ffffff", "inverse-surface": "#213145", "surface-bright": "#f8f9ff", "primary-container": "#2170e4", "on-surface-variant": "#424754", "on-primary-fixed": "#001a42", "tertiary": "#4f5d6e", "primary-fixed": "d8e2ff", "primary-fixed-dim": "#adc6ff", "on-primary": "#ffffff", "surface-dim": "#cbdbf5", "secondary": "#565e74", "on-surface": "#0b1c30", "outline": "#727785", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "background": "#f8f9ff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#004395", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#0e1d2b", "inverse-on-surface": "#eaf1ff", "on-primary-container": "#fefcff", "inverse-primary": "#adc6ff", "outline-variant": "#c2c6d6", "primary": "#0058be", "on-secondary-fixed": "#131b2e", "on-secondary-fixed-variant": "#3f465c", "surface-container-high": "#dce9ff", "surface": "#f8f9ff", "on-background": "#0b1c30", "secondary-fixed": "#dae2fd", "error": "#ba1a1a", "surface-container-low": "#eff4ff", "tertiary-container": "#677687", "on-tertiary-fixed-variant": "#3a4858", "secondary-fixed-dim": "#bec6e0", "secondary-container": "#dae2fd", "surface-tint": "#005ac2", "on-error": "#ffffff", "tertiary-fixed": "#d5e4f8", "on-error-container": "#93000a", "on-secondary-container": "#5c647a", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "gutter-mobile": "1rem", "space-sm": "0.5rem", "margin": "2rem", "space-xl": "2rem", "margin-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "body-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.01em", fontWeight: "400" }], "display-lg-mobile": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["3rem", { lineHeight: "3.5rem", letterSpacing: "-0.025em", fontWeight: "700" }], "body-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0", fontWeight: "400" }], "headline-md": ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "600" }], "body-lg": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0", fontWeight: "400" }], "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-xl-mobile": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "headline-lg": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "label-sm": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.04em", fontWeight: "700" }], "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }], "headline-sm": ["1.125rem", { lineHeight: "1.5rem", letterSpacing: "-0.005em", fontWeight: "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Go back" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface truncate max-w-[200px]">Scan Confirmation / Review Detected Medicine</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Clinical Help" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">help_outline</span></button><button aria-label="Clinical Safety Alert" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">verified_user</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface px-gutter-mobile min-h-screen"><div class="flex flex-col w-full pb-space-xl">
+<!-- Demo Optical Recognition Status Banner -->
+<div class="w-full bg-secondary-container text-on-secondary-container rounded-xl p-space-sm mb-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-secondary-fixed">Simulated Parsing Engine</span>
+</div>
+<span class="font-label-sm text-label-sm bg-primary text-on-primary px-space-sm py-0.5 rounded-full font-bold">
+      DEMO OPTICAL RECOGNITION
+    </span>
+</div>
+<!-- Scan Snapshot & Match Confidence Header Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex gap-space-md items-center">
+<!-- Thumbnail Snippet -->
+<div class="relative w-20 h-20 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up crisp clinical photograph of Augmentin 625 Duo pharmaceutical blister package with batch typography clearly illuminated by surgical blue-tinted led inspection light, high resolution, pharmaceutical lab verification background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq5bYeB4ZL0hfwsY5ARB8wiJhcjPhH_lFXge8NNWdEShj7DkHXigcru9viO68Wn84ZFTSMTODDlzVb7SMXzBZDRJ-K2a1OOeGYSfUhl6zA-n_EDtLkGTd2jZq0eW6_qEyPsBVDrxdG53kT2N-3zSYvxpSKXVyaFF3rEmKG8K7K7m_89OsOdg1IKBD8SqBfy0uj7jjM2D_Sa81irRqiIo1eHu_znrvpf9QEsex6vvUnisszPqTr_wGmBQ">
+<div class="absolute inset-0 bg-primary/10 flex items-end justify-center pb-1">
+<span class="font-label-sm text-label-sm text-on-primary bg-primary/90 px-1.5 py-0.2 rounded text-[10px]">CROPPED</span>
+</div>
+</div>
+<!-- Quick Triage Metric -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">OCR Match Confidence</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">96% [Demo]</span>
+</div>
+<!-- Progress Metric Bar -->
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden mb-2">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 96%;"></div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-body-sm text-body-sm truncate">GS1 DataMatrix Decoded</span>
+</div>
+</div>
+</div>
+</div>
+<!-- OCR Verification Prompt Card -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mb-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">rate_review</span>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight mb-0.5">Verify Detected Values</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Values extracted from camera scan. Tap any field to modify or correct errors prior to clinical lookup.
+        </p>
+</div>
+</div>
+</div>
+<!-- Detected Fields List / Interactive Form -->
+<div class="flex flex-col gap-space-sm w-full mb-space-md">
+<!-- Field 1: Trade Name -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 hover:shadow-md" id="field-name-container">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Detected Trade Name</span>
+<button class="flex items-center gap-1 text-primary hover:opacity-80" onclick="enableEdit('input-trade-name', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span class="font-label-md text-label-md">Edit</span>
+</button>
+</div>
+<div class="mt-1">
+<input class="w-full bg-transparent font-headline-md text-headline-md text-on-surface focus:bg-surface-container-low focus:px-space-sm focus:py-1 rounded transition-all duration-150 outline-none" id="input-trade-name" readonly="" type="text" value="Augmentin 625 Duo">
+</div>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary">check_circle</span>
+          Optical Consensus: High (0.96)
+        </span>
+</div>
+</div>
+<!-- Field 2: Active Salts / API -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all duration-200 hover:shadow-md">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Active Ingredients (API)</span>
+<button class="flex items-center gap-1 text-primary hover:opacity-80" onclick="enableEdit('input-api', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+<span class="font-label-md text-label-md">Edit</span>
+</button>
+</div>
+<div class="mt-1">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface font-semibold focus:bg-surface-container-low focus:px-space-sm focus:py-1 rounded transition-all duration-150 outline-none" id="input-api" readonly="" type="text" value="Amoxicillin Trihydrate (500mg) + Clavulanate Potassium (125mg)">
+</div>
+<div class="flex items-center gap-space-xs mt-2 flex-wrap">
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-primary-fixed-variant px-2 py-0.5 rounded-full">
+          Penicillin-Class Antibiotic
+        </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-primary-fixed-variant px-2 py-0.5 rounded-full">
+          Beta-Lactamase Inhibitor
+        </span>
+</div>
+</div>
+<!-- 2-Column Grid for Dosage Form & Batch -->
+<div class="grid grid-cols-2 gap-space-sm w-full">
+<!-- Dosage Form -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Form</span>
+<button class="text-primary hover:opacity-80" onclick="enableEdit('input-form', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface font-semibold focus:bg-surface-container-low focus:px-space-xs rounded outline-none" id="input-form" readonly="" type="text" value="Film-Coated Tablet">
+</div>
+<div class="mt-2 flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">medication</span>
+<span class="font-label-sm text-label-sm">Oral Solid</span>
+</div>
+</div>
+<!-- Batch / Lot -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Batch / Lot</span>
+<button class="text-primary hover:opacity-80" onclick="enableEdit('input-batch', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface font-semibold focus:bg-surface-container-low focus:px-space-xs rounded outline-none" id="input-batch" readonly="" type="text" value="#GSK-408">
+</div>
+<div class="mt-2 flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">qr_code_2</span>
+<span class="font-label-sm text-label-sm truncate">Matrix Validated</span>
+</div>
+</div>
+</div>
+<!-- 2-Column Grid for Expiry & Manufacturer -->
+<div class="grid grid-cols-2 gap-space-sm w-full">
+<!-- Expiry Date -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Expiry Date</span>
+<button class="text-primary hover:opacity-80" onclick="enableEdit('input-expiry', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface font-semibold focus:bg-surface-container-low focus:px-space-xs rounded outline-none" id="input-expiry" readonly="" type="text" value="07/2026">
+</div>
+<div class="mt-2 flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">event_available</span>
+<span class="font-label-sm text-label-sm">24 Months Left</span>
+</div>
+</div>
+<!-- Manufacturer -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Manufacturer</span>
+<button class="text-primary hover:opacity-80" onclick="enableEdit('input-mfr', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface font-semibold focus:bg-surface-container-low focus:px-space-xs rounded outline-none truncate" id="input-mfr" readonly="" type="text" value="GlaxoSmithKline">
+</div>
+<div class="mt-2 flex items-center gap-1 text-on-surface-variant truncate">
+<span class="material-symbols-outlined text-[14px]">factory</span>
+<span class="font-label-sm text-label-sm truncate">Pharma Ltd.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mandatory Clinical Disclaimer Callout -->
+<div class="w-full bg-surface-container rounded-xl p-space-md mb-space-lg shadow-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">info</span>
+<div class="flex-1 min-w-0">
+<h3 class="font-label-lg text-label-lg text-on-surface mb-1">Simulated Optical Review Notice</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Optical recognition is strictly for automated data indexing and user verification. This algorithm does not perform chemical testing or certify genuine medicine authentication. Always inspect physical packaging, seals, and consult a registered pharmacist before administration.
+        </p>
+</div>
+</div>
+</div>
+<!-- CTAs Section -->
+<div class="flex flex-col gap-space-sm w-full">
+<!-- Primary CTA -->
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md active:bg-primary-container transition-colors duration-150" id="confirm-btn" onclick="handleConfirm()" type="button">
+<span>Confirm &amp; Check Drug Information</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Secondary Actions Row -->
+<div class="grid grid-cols-2 gap-space-sm w-full">
+<button class="h-11 bg-surface-container-lowest text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 shadow-sm active:bg-surface-container transition-colors duration-150" onclick="history.back()" type="button">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+<span>Rescan Package</span>
+</button>
+<button class="h-11 bg-surface-container-lowest text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 shadow-sm active:bg-surface-container transition-colors duration-150" onclick="handleManualEntry()" type="button">
+<span class="material-symbols-outlined text-[18px]">keyboard</span>
+<span>Enter Manually</span>
+</button>
+</div>
+</div>
+<!-- Feedback Toast Container (Hidden initially) -->
+<div class="fixed bottom-6 left-4 right-4 bg-inverse-surface text-inverse-on-surface rounded-xl p-space-md shadow-xl flex items-center justify-between opacity-0 pointer-events-none transition-all duration-300 z-50" id="toast-feedback">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">check_circle</span>
+<span class="font-body-sm text-body-sm" id="toast-text">Field enabled for editing</span>
+</div>
+<button class="text-inverse-on-surface" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<script>
+  function enableEdit(inputId, buttonElement) {
+    var input = document.getElementById(inputId);
+    if (!input) return;
+
+    if (input.hasAttribute('readonly')) {
+      input.removeAttribute('readonly');
+      input.focus();
+      input.select();
+      buttonElement.innerHTML = '<span class="material-symbols-outlined text-[16px] text-primary">done</span><span class="font-label-md text-label-md text-primary font-bold">Save</span>';
+      showToast('Field unlocked. Tap Save when finished.');
+    } else {
+      input.setAttribute('readonly', 'true');
+      buttonElement.innerHTML = '<span class="material-symbols-outlined text-[16px]">edit</span><span class="font-label-md text-label-md">Edit</span>';
+      showToast('Detected text updated.');
+    }
+  }
+
+  function handleConfirm() {
+    var confirmBtn = document.getElementById('confirm-btn');
+    if (!confirmBtn) return;
+    
+    confirmBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Verifying Drug Dossier...</span>';
+    confirmBtn.disabled = true;
+
+    setTimeout(function() {
+      showToast('Confirmed: Navigating to Drug Detail...');
+      setTimeout(function() {
+        confirmBtn.innerHTML = '<span>Confirm & Check Drug Information</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
+        confirmBtn.disabled = false;
+      }, 1200);
+    }, 800);
+  }
+
+  function handleManualEntry() {
+    var inputs = ['input-trade-name', 'input-api', 'input-form', 'input-batch', 'input-expiry', 'input-mfr'];
+    inputs.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.removeAttribute('readonly');
+      }
+    });
+    var firstInput = document.getElementById('input-trade-name');
+    if (firstInput) {
+      firstInput.focus();
+    }
+    showToast('All fields set to manual editing mode.');
+  }
+
+  var toastTimer = null;
+  function showToast(message) {
+    var toast = document.getElementById('toast-feedback');
+    var toastText = document.getElementById('toast-text');
+    if (!toast || !toastText) return;
+
+    toastText.innerText = message;
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      hideToast();
+    }, 2800);
+  }
+
+  function hideToast() {
+    var toast = document.getElementById('toast-feedback');
+    if (toast) {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0', 'pointer-events-none');
+    }
+  }
+</script></main></body></html>

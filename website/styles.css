@@ -15,6 +15,51 @@ html, body { height: 100%; }
 body { -webkit-tap-highlight-color: transparent; }
 #main-content { scroll-behavior: smooth; }
 
+/* ── Pre-login mode (welcome / login / signup) ────────────────────────── */
+/* Hide all app chrome — sidebar, topbars, bottom nav                      */
+#app-shell.pre-login #sidebar          { display: none !important; }
+#app-shell.pre-login #topbar           { display: none !important; }
+#app-shell.pre-login #topbar-desktop   { display: none !important; }
+#app-shell.pre-login #bottom-nav       { display: none !important; }
+#app-shell.pre-login #mobile-sidebar   { display: none !important; }
+#app-shell.pre-login #mobile-overlay   { display: none !important; }
+/* Reset content column: no left margin, full width */
+#app-shell.pre-login > div             { margin-left: 0 !important; }
+/* Remove topbar padding — content fills from top of shell */
+#app-shell.pre-login #main-content     { padding-top: 0 !important; padding-bottom: 0 !important; }
+/* Minimal welcome header bar */
+#welcome-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px; position: sticky; top: 0; z-index: 20;
+  background: rgba(10,22,40,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#welcome-header .wh-logo { display: flex; align-items: center; gap: 10px; }
+#welcome-header .wh-logo-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: #1a6fdb; display: flex; align-items: center; justify-content: center;
+}
+#welcome-header .wh-title { font-weight: 800; font-size: 16px; color: #fff; }
+#welcome-header .wh-actions { display: flex; align-items: center; gap: 10px; }
+#welcome-header .wh-login {
+  color: #a8d4ff; font-size: 14px; font-weight: 600; cursor: pointer;
+  padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(168,212,255,0.3);
+  background: transparent; font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+#welcome-header .wh-login:hover { background: rgba(168,212,255,0.1); color: #fff; }
+#welcome-header .wh-signup {
+  background: #1a6fdb; color: #fff; font-size: 14px; font-weight: 700;
+  padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer;
+  font-family: inherit; transition: background 0.15s;
+}
+#welcome-header .wh-signup:hover { background: #1558b0; }
+/* Login/signup card pages: white background, centered */
+#app-shell.pre-login.auth-page #main-content {
+  background: #faf8ff;
+  overflow-y: auto;
+}
+
 /* ── Material Symbols ─────────────────────────────────────────────────── */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
@@ -347,4 +392,20 @@ body { -webkit-tap-highlight-color: transparent; }
 }
 @media (min-width: 1024px) {
   #main-content { padding-bottom: 24px; }
+}
+
+/* -- FDA Live Search Dropdown ------------------------------------------- */
+/* Positioned dropdowns for FDA drug search inputs */
+#dash-search-drop,
+#price-search-drop,
+#medinfo-drop {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  max-height: 288px;
+  overflow-y: auto;
+}
+#dash-search-drop button,
+#price-search-drop button,
+#medinfo-drop button {
+  font-family: inherit;
+  text-align: left;
 }

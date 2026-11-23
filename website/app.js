@@ -35,13 +35,47 @@ const ED = {
   },
 
   _render(route) {
-    const fn = SCREENS[route] || SCREENS['welcome'];
-    $('main-content').innerHTML = fn();
+    const PRE_LOGIN = ['welcome', 'login', 'signup'];
+    const shell = $('app-shell');
+    const isPreLogin = PRE_LOGIN.includes(route);
+    const isAuth     = route === 'login' || route === 'signup';
+
+    // Toggle pre-login CSS mode (hides sidebar, topbars, bottom nav)
+    shell.classList.toggle('pre-login', isPreLogin);
+    shell.classList.toggle('auth-page', isAuth);
+
     this._updateNav(route);
     this._updateTopbar(route);
     $('main-content').scrollTop = 0;
-    // Bind screen events after render
-    if (EVENTS[route]) EVENTS[route]();
+
+    const fn = SCREENS[route] || SCREENS['welcome'];
+    const result = fn();
+
+    // Support async screens (screens that fetch real API data)
+    if (result && typeof result.then === 'function') {
+      $('main-content').innerHTML = `
+        <div class="flex flex-col items-center justify-center h-64 gap-4">
+          <span class="material-symbols-outlined text-primary text-[48px] animate-spin" style="animation-duration:1s">progress_activity</span>
+          <p class="text-sm text-[#74767e]">Loading from FDA database…</p>
+        </div>`;
+      result.then(html => {
+        $('main-content').innerHTML = html;
+        $('main-content').scrollTop = 0;
+        if (EVENTS[route]) EVENTS[route]();
+      }).catch(err => {
+        $('main-content').innerHTML = `
+          <div class="max-w-lg mx-auto mt-16 card p-8 text-center">
+            <span class="material-symbols-outlined text-[48px] text-red-400 mb-3">wifi_off</span>
+            <h2 class="font-bold text-lg mb-2">Could not load real data</h2>
+            <p class="text-sm text-[#44464e] mb-4">Check your internet connection. Showing demo data as fallback.</p>
+            <button class="btn-primary" onclick="ED.navigate('${route}')">Retry</button>
+          </div>`;
+      });
+    } else {
+      $('main-content').innerHTML = result;
+      // Bind screen events after render
+      if (EVENTS[route]) EVENTS[route]();
+    }
   },
 
   _updateNav(route) {
@@ -65,7 +99,12 @@ const ED = {
           <div class="font-semibold text-sm text-[#1b1c1f] truncate">${DEMO.user.name}</div>
           <div class="text-xs text-[#74767e] truncate">${DEMO.user.plan}</div>
         </div>
-      </div>`;
+      </div>
+      <button onclick="ED.navigate('login')"
+              class="mt-3 w-full flex items-center justify-center gap-2 text-xs font-semibold
+                     text-primary border border-primary/30 rounded-lg py-1.5 hover:bg-primary/5 transition-colors">
+        ${icon('login','text-[15px]')} Sign In (Demo)
+      </button>`;
 
     $('sidebar-nav').innerHTML = sidebarHTML;
     $('sidebar-user').innerHTML = userHTML;
@@ -138,11 +177,24 @@ const ED = {
    SCREEN TEMPLATES
    ════════════════════════════════════════════════════════════════════════ */
 const SCREENS = {};
+const EVENTS = {};
 
 /* ─────────────────────────────────────────────────────────────────────────
    1. WELCOME
    ─────────────────────────────────────────────────────────────────────── */
 SCREENS.welcome = () => `
+<div id="welcome-header">
+  <div class="wh-logo">
+    <div class="wh-logo-icon">
+      <span class="material-symbols-outlined text-white text-[18px]">health_and_safety</span>
+    </div>
+    <span class="wh-title">E Doctor</span>
+  </div>
+  <div class="wh-actions">
+    <button class="wh-login" onclick="ED.navigate('login')">Log In</button>
+    <button class="wh-signup" onclick="ED.navigate('signup')">Get Started Free</button>
+  </div>
+</div>
 <div class="hero-gradient min-h-[60vh] px-6 py-16 lg:py-24">
   <div class="max-w-6xl mx-auto">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -240,6 +292,19 @@ SCREENS.welcome = () => `
    2. LOGIN
    ─────────────────────────────────────────────────────────────────────── */
 SCREENS.login = () => `
+<div class="flex items-center gap-3 px-6 py-4 border-b border-[#e8e7ef] bg-white sticky top-0 z-10">
+  <button onclick="ED.navigate('welcome')"
+          class="flex items-center gap-1 text-primary text-sm font-semibold hover:underline">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
+  </button>
+  <div class="flex-1"></div>
+  <div class="flex items-center gap-2">
+    <div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+      <span class="material-symbols-outlined text-white text-[16px]">health_and_safety</span>
+    </div>
+    <span class="font-bold text-sm text-[#1b1c1f]">E Doctor</span>
+  </div>
+</div>
 <div class="min-h-full flex items-start justify-center px-4 py-12 lg:py-20">
   <div class="w-full max-w-md">
     <div class="text-center mb-8">
@@ -288,6 +353,19 @@ SCREENS.login = () => `
    3. SIGN UP
    ─────────────────────────────────────────────────────────────────────── */
 SCREENS.signup = () => `
+<div class="flex items-center gap-3 px-6 py-4 border-b border-[#e8e7ef] bg-white sticky top-0 z-10">
+  <button onclick="ED.navigate('welcome')"
+          class="flex items-center gap-1 text-primary text-sm font-semibold hover:underline">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
+  </button>
+  <div class="flex-1"></div>
+  <div class="flex items-center gap-2">
+    <div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+      <span class="material-symbols-outlined text-white text-[16px]">health_and_safety</span>
+    </div>
+    <span class="font-bold text-sm text-[#1b1c1f]">E Doctor</span>
+  </div>
+</div>
 <div class="min-h-full flex items-start justify-center px-4 py-12 lg:py-20">
   <div class="w-full max-w-md">
     <div class="text-center mb-8">
@@ -350,20 +428,25 @@ SCREENS.dashboard = () => `
       </div>
       <p class="page-subtitle">Your Health, Smarter &amp; Safer</p>
     </div>
-    <a href="tel:911" class="flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full
-       font-bold text-sm border border-red-200 hover:bg-red-100 transition-colors flex-shrink-0">
-      ${icon('emergency','text-[18px]',true)} Emergency SOS
-    </a>
   </div>
 
   <!-- Search -->
   <div class="section pt-4">
-    <div class="flex items-center gap-3 bg-surface-container rounded-xl px-4 h-12 max-w-2xl">
-      ${icon('search','text-[22px] text-[#74767e]')}
-      <input placeholder="Search medicine name, salt, or symptom…"
-             class="bg-transparent flex-1 text-[15px] focus:outline-none text-[#1b1c1f] placeholder:text-[#74767e]">
-      ${icon('mic','text-[20px] text-[#74767e] cursor-pointer')}
+    <div class="relative max-w-2xl">
+      <div class="flex items-center gap-3 bg-surface-container rounded-xl px-4 h-12">
+        ${icon('search','text-[22px] text-[#74767e]')}
+        <input id="dash-search-input"
+               placeholder="Search medicine name, salt, or symptom…"
+               autocomplete="off"
+               class="bg-transparent flex-1 text-[15px] focus:outline-none text-[#1b1c1f] placeholder:text-[#74767e]">
+        ${icon('mic','text-[20px] text-[#74767e] cursor-pointer')}
+      </div>
+      <!-- FDA live results dropdown -->
+      <div id="dash-search-drop"
+           class="hidden absolute top-14 left-0 right-0 bg-white rounded-xl shadow-xl border border-[#e8e7ef] z-50 overflow-hidden max-h-72 overflow-y-auto">
+      </div>
     </div>
+    <p class="text-xs text-[#74767e] mt-2">🔴 Live search: FDA drug database</p>
   </div>
 
   <!-- Today summary strip -->
@@ -734,17 +817,31 @@ SCREENS['price-search'] = () => `
   <div class="page-header">
     <div>
       <h1 class="page-title">Price Search</h1>
-      <p class="page-subtitle">Find the best price for any medicine — demo benchmark data</p>
+      <p class="page-subtitle">Find drug info via FDA · Prices shown are demo benchmark data</p>
     </div>
   </div>
   <div class="section">
-    ${demoNote('All prices shown are simulated demo data. Contact your pharmacy for real pricing.')}
+    ${demoNote('Real drug info from FDA database. Prices are simulated — contact your pharmacy for actual pricing.')}
     <div class="card p-6 mt-4">
-      <div class="flex gap-3 mb-4">
-        <input class="input flex-1" value="${DEMO.medicine.name}" placeholder="Medicine name or molecule…">
-        <button class="btn-primary px-6" onclick="ED.navigate('price-compare')">
-          ${icon('search','text-[20px]')} Search
-        </button>
+      <div class="relative mb-4">
+        <div class="flex gap-3">
+          <div class="relative flex-1">
+            <input id="price-search-input" autocomplete="off"
+                   value="${DEMO.medicine.name}"
+                   placeholder="Type medicine name…"
+                   class="input w-full">
+            <div id="price-search-drop"
+                 class="hidden absolute top-12 left-0 right-0 bg-white rounded-xl shadow-xl border border-[#e8e7ef] z-50 overflow-hidden max-h-60 overflow-y-auto">
+            </div>
+          </div>
+          <button class="btn-primary px-6" onclick="
+            const v = document.getElementById('price-search-input').value.trim();
+            if(v){ window._fdaSelectedDrug = v; ED.navigate('med-info'); }
+          ">
+            ${icon('search','text-[20px]')} Look Up
+          </button>
+        </div>
+        <p class="text-xs text-green-700 mt-1.5 font-medium">🔴 Live search: FDA drug database</p>
       </div>
       <div class="flex flex-wrap gap-3 mb-2">
         <span class="text-sm font-semibold text-[#44464e] self-center">Strength:</span>
@@ -1312,81 +1409,120 @@ SCREENS.schedule = () => `
 /* ─────────────────────────────────────────────────────────────────────────
    BONUS B1: MEDICINE INFO
    ─────────────────────────────────────────────────────────────────────── */
-SCREENS['med-info'] = () => `
+SCREENS['med-info'] = async () => {
+  // Use drug selected from search, or fall back to demo medicine
+  const searchName = window._fdaSelectedDrug || DEMO.medicine.name;
+
+  let label = null;
+  let loadError = false;
+  try {
+    label = await FDA.getDrugLabel(searchName);
+  } catch(e) {
+    loadError = true;
+  }
+
+  // If FDA returned data, use it — otherwise fall back to demo
+  const useFDA = label && !loadError;
+  const { brand, generic, mfr } = useFDA ? FDA.names(label) : { brand: DEMO.medicine.name, generic: DEMO.medicine.generic, mfr: 'GSK' };
+
+  // Extract real label sections (with demo fallbacks)
+  const indications = useFDA
+    ? FDA.field(label.indications_and_usage,  'Information not available in FDA label.')
+    : `Augmentin 625mg (Amoxicillin + Clavulanic Acid) is a broad-spectrum antibiotic.`;
+
+  const warnings = useFDA
+    ? FDA.field(label.warnings_and_cautions || label.warnings, 'No specific warnings listed.')
+    : DEMO.medicine.warnings.join(' ');
+
+  const interactions = useFDA
+    ? FDA.field(label.drug_interactions, 'Drug interaction data not available in FDA label.')
+    : DEMO.medicine.interactions.map(i => `${i.drug}: ${i.note}`).join('; ');
+
+  const storage = useFDA
+    ? FDA.field(label.storage_and_handling, 'Store as directed on the label.')
+    : 'Store below 25°C. Keep dry. Protect from light.';
+
+  const dosage = useFDA
+    ? FDA.field(label.dosage_and_administration, 'See prescribing information.')
+    : 'As directed by your physician.';
+
+  const sourceNote = useFDA
+    ? `<span class="text-green-700 font-semibold">✓ Live FDA label data</span> for <strong>${brand}</strong> · Mfr: ${mfr}`
+    : `<span class="text-amber-700">⚠ Could not load FDA data — showing demo fallback</span>`;
+
+  return `
 <div class="max-w-4xl mx-auto">
   <div class="page-header">
     <div>
-      <h1 class="page-title">${DEMO.medicine.name}</h1>
-      <p class="page-subtitle">${DEMO.medicine.generic} · ${DEMO.medicine.category}</p>
+      <h1 class="page-title">${brand}</h1>
+      <p class="page-subtitle">${generic} · ${mfr}</p>
     </div>
     <button class="btn-secondary btn-sm" onclick="ED.back()">
       ${icon('arrow_back','text-[18px]')} Back
     </button>
   </div>
   <div class="section">
-    ${demoNote('Demo drug information — not a substitute for official prescribing information or pharmacist advice.')}
+    <!-- Source badge -->
+    <div class="flex items-center gap-2 text-xs px-4 py-2.5 rounded-xl bg-surface-container mb-4">
+      ${icon('database','text-[16px] text-primary')} ${sourceNote}
+    </div>
+    ${demoNote('For informational purposes only — not a substitute for your doctor or pharmacist\'s advice.')}
+
+    <!-- Search another drug -->
+    <div class="relative mt-4 mb-5 max-w-md">
+      <div class="flex gap-3">
+        <div class="relative flex-1">
+          <input id="medinfo-search" autocomplete="off"
+                 value="${brand}"
+                 placeholder="Search another drug…"
+                 class="input w-full pr-10">
+          <div id="medinfo-drop"
+               class="hidden absolute top-12 left-0 right-0 bg-white rounded-xl shadow-xl border border-[#e8e7ef] z-50 overflow-hidden max-h-60 overflow-y-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Tab bar -->
-    <div class="flex gap-1 bg-surface-container rounded-xl p-1 max-w-lg mt-4 mb-5" id="med-tabs">
-      ${['Indications','Warnings','Interactions','Storage'].map((t,i)=>`
+    <div class="flex gap-1 bg-surface-container rounded-xl p-1 max-w-lg mb-5" id="med-tabs">
+      ${['Indications','Warnings','Interactions','Dosage','Storage'].map((t,i) => `
         <button class="flex-1 py-2 text-sm font-semibold rounded-lg transition-all
-                       ${i===0?'bg-white text-primary shadow-sm':'text-[#44464e] hover:bg-white/60'}"
+                       ${i===0 ? 'bg-white text-primary shadow-sm' : 'text-[#44464e] hover:bg-white/60'}"
                 onclick="ED.switchMedTab(this,'${t.toLowerCase()}')">
           ${t}
         </button>`).join('')}
     </div>
-    <!-- Indications panel -->
+
+    <!-- Indications -->
     <div id="panel-indications" class="card p-6">
       <h3 class="section-title">Indications &amp; Usage</h3>
-      <p class="text-sm text-[#44464e] leading-relaxed mb-4">
-        Augmentin 625mg (Amoxicillin + Clavulanic Acid) is a broad-spectrum antibiotic indicated for:
-      </p>
-      ${['Respiratory tract infections (sinusitis, pneumonia, bronchitis)',
-         'Urinary tract infections (UTI)',
-         'Skin and soft tissue infections',
-         'Dental infections and oral abscesses',
-         'Otitis media (ear infections)'].map(i=>`
-        <div class="flex gap-2 text-sm text-[#44464e] mb-2">
-          ${icon('check_circle','text-[16px] text-green-600 flex-shrink-0 mt-0.5')} ${i}
-        </div>`).join('')}
+      <p class="text-sm text-[#44464e] leading-relaxed whitespace-pre-line">${indications}</p>
     </div>
+
+    <!-- Warnings -->
     <div id="panel-warnings" class="card p-6 hidden">
       <h3 class="section-title">Warnings &amp; Precautions</h3>
-      ${DEMO.medicine.warnings.map(w=>`
-        <div class="flex gap-2 mb-3 p-3 bg-red-50 rounded-xl">
-          ${icon('warning','text-[18px] text-red-600 flex-shrink-0')}
-          <p class="text-sm text-[#1b1c1f]">${w}</p>
-        </div>`).join('')}
+      <p class="text-sm text-[#44464e] leading-relaxed whitespace-pre-line">${warnings}</p>
     </div>
+
+    <!-- Interactions -->
     <div id="panel-interactions" class="card p-6 hidden">
       <h3 class="section-title">Drug Interactions</h3>
-      <table class="data-table">
-        <thead><tr><th>Drug</th><th>Severity</th><th>Note</th></tr></thead>
-        <tbody>
-          ${DEMO.medicine.interactions.map(i=>`
-            <tr>
-              <td class="font-semibold">${i.drug}</td>
-              <td><span class="badge ${i.severity==='high'?'badge-error':i.severity==='moderate'?'badge-warning':'badge-neutral'} text-xs">${i.severity}</span></td>
-              <td class="text-sm text-[#44464e]">${i.note}</td>
-            </tr>`).join('')}
-        </tbody>
-      </table>
+      <p class="text-sm text-[#44464e] leading-relaxed whitespace-pre-line">${interactions}</p>
     </div>
+
+    <!-- Dosage -->
+    <div id="panel-dosage" class="card p-6 hidden">
+      <h3 class="section-title">Dosage &amp; Administration</h3>
+      <p class="text-sm text-[#44464e] leading-relaxed whitespace-pre-line">${dosage}</p>
+    </div>
+
+    <!-- Storage -->
     <div id="panel-storage" class="card p-6 hidden">
-      <h3 class="section-title">Storage &amp; Disposal</h3>
-      <div class="grid sm:grid-cols-2 gap-4">
-        ${[
-          { icon:'thermostat',   label:'Temperature', val:'Store below 25°C (77°F)' },
-          { icon:'water_drop',   label:'Humidity',    val:'Keep dry. Avoid damp conditions.' },
-          { icon:'light_mode',   label:'Light',       val:'Protect from direct sunlight.' },
-          { icon:'delete_forever', label:'Disposal',  val:'Return unused medicine to pharmacy.' },
-        ].map(s=>`
-          <div class="flex gap-3 p-4 bg-surface-container rounded-xl">
-            ${icon(s.icon,'text-[28px] text-primary flex-shrink-0')}
-            <div><div class="font-bold text-sm">${s.label}</div>
-            <div class="text-sm text-[#44464e]">${s.val}</div></div>
-          </div>`).join('')}
-      </div>
+      <h3 class="section-title">Storage &amp; Handling</h3>
+      <p class="text-sm text-[#44464e] leading-relaxed whitespace-pre-line">${storage}</p>
     </div>
+
     <div class="flex gap-3 mt-5">
       <button class="btn-primary flex-1" onclick="ED.navigate('price-search')">
         ${icon('price_check','text-[18px]')} Check Price
@@ -1397,6 +1533,26 @@ SCREENS['med-info'] = () => `
     </div>
   </div>
 </div>`;
+};
+
+/* Wire med-info search after render */
+EVENTS['med-info'] = () => {
+  attachFdaSearch('medinfo-search', 'medinfo-drop', (brand) => {
+    window._fdaSelectedDrug = brand;
+    ED.navigate('med-info');
+  });
+  // Also fix tab switching to include dosage tab
+  window.ED.switchMedTab = function(btn, panelId) {
+    const tabs = $('med-tabs')?.querySelectorAll('button');
+    if (!tabs) return;
+    tabs.forEach(t => { t.className = 'flex-1 py-2 text-sm font-semibold rounded-lg transition-all text-[#44464e] hover:bg-white/60'; });
+    btn.className = 'flex-1 py-2 text-sm font-semibold rounded-lg transition-all bg-white text-primary shadow-sm';
+    ['indications','warnings','interactions','dosage','storage'].forEach(p => {
+      const el = $('panel-' + p);
+      if (el) el.classList.toggle('hidden', p !== panelId);
+    });
+  };
+};
 
 /* ─────────────────────────────────────────────────────────────────────────
    BONUS B2: ALTERNATIVES
@@ -1507,7 +1663,16 @@ SCREENS.help = () => `
 /* ════════════════════════════════════════════════════════════════════════
    POST-RENDER EVENT HANDLERS
    ════════════════════════════════════════════════════════════════════════ */
-const EVENTS = {};
+
+
+/* Dashboard: wire live FDA search to the search bar */
+EVENTS['dashboard'] = () => {
+  attachFdaSearch('dash-search-input', 'dash-search-drop', (brand, generic) => {
+    // Store selected drug name for med-info screen, then navigate
+    window._fdaSelectedDrug = brand;
+    ED.navigate('med-info');
+  });
+};
 
 EVENTS['symptom-ai'] = () => {
   // Allow pressing Enter to "send" chat message
@@ -1546,7 +1711,7 @@ ED.addChatMessage = function() {
   }, 800);
 };
 
-/* ── Medicine info tab switcher ───────────────────────────────────────── */
+/* ── Medicine info tab switcher (supports 5 tabs incl. dosage) ────────── */
 ED.switchMedTab = function(btn, panelId) {
   const tabs = $('med-tabs')?.querySelectorAll('button');
   if (!tabs) return;
@@ -1554,9 +1719,17 @@ ED.switchMedTab = function(btn, panelId) {
     t.className = 'flex-1 py-2 text-sm font-semibold rounded-lg transition-all text-[#44464e] hover:bg-white/60';
   });
   btn.className = 'flex-1 py-2 text-sm font-semibold rounded-lg transition-all bg-white text-primary shadow-sm';
-  ['indications','warnings','interactions','storage'].forEach(p => {
+  ['indications','warnings','interactions','dosage','storage'].forEach(p => {
     const el = $('panel-' + p);
     if (el) el.classList.toggle('hidden', p !== panelId);
+  });
+};
+
+/* ── Wire price-search FDA live search ───────────────────────────────── */
+EVENTS['price-search'] = () => {
+  attachFdaSearch('price-search-input', 'price-search-drop', (brand) => {
+    window._fdaSelectedDrug = brand;
+    ED.navigate('med-info');
   });
 };
 
@@ -1573,6 +1746,7 @@ window.addEventListener('hashchange', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const route = window.location.hash.slice(1) || 'welcome';
-  ED.navigate(route, false);
+  // Always open at the Welcome page so Log In / Sign Up are immediately visible.
+  // In-session navigation (hashchange above) still works normally.
+  ED.navigate('welcome', false);
 });

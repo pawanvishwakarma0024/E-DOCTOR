@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>E Doctor — Browser Debug</title>
+<style>
+  body{font-family:monospace;padding:20px;background:#0a1628;color:#e0e6f0}
+  h2{color:#60d0a0;margin-bottom:10px}
+  .ok{color:#60d060}.fail{color:#ff6060}.warn{color:#ffd060}
+  .log{background:#111c2a;padding:12px;border-radius:8px;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:400px;overflow-y:auto}
+  .btn{background:#1a6fdb;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px;margin:4px}
+</style>
+</head><body>
+<h2>🔍 E Doctor — Live Browser Debug</h2>
+<div id="status">Running checks...</div>
+<div class="log" id="log"></div>
+<br>
+<button class="btn" onclick="runChecks()">Re-run Checks</button>
+<button class="btn" onclick="window.open('index.html')">Open Website</button>
+<script>
+const errors=[], warns=[], passes=[];
+const log = msg => { document.getElementById('log').textContent += msg + '\n'; };
+
+// Capture ALL errors
+window.onerror = (msg,src,line,col,err) => {
+  errors.push(`JS ERROR: ${msg} (line ${line})`);
+  log('❌ ' + msg + ' @ line ' + line);
+};
+window.onunhandledrejection = e => {
+  errors.push(`PROMISE REJECTED: ${e.reason}`);
+  log('❌ Promise rejected: ' + e.reason);
+};
+
+async function runChecks(){
+  document.getElementById('log').textContent = '';
+  errors.length=0; warns.length=0; passes.length=0;
+
+  log('=== Loading scripts ===');
+
+  // 1. Check all local files loadable
+  const files = ['data.js','api.js','app.js','styles.css','assets/tailwind.js','assets/fonts.css'];
+  for(const f of files){
+    try{
+      const r = await fetch(f);
+      if(r.ok){ passes.push(f); log('✓ ' + f + ' (' + Math.round((await r.clone().text()).length/1024) + ' KB)'); }
+      else { errors.push(f+' HTTP '+r.status); log('❌ '+f+' — '+r.status); }
+    }catch(e){ warns.push(f+' fetch error'); log('⚠ '+f+' — '+e.message+' (normal on file://)'); }
+  }
+
+  log('\n=== Asset files ===');
+  const assets=['assets/jakarta-400.ttf','assets/jakarta-700.ttf','assets/material-symbols.ttf'];
+  for(const a of assets){
+    try{
+      const r = await fetch(a);
+      if(r.ok){ log('✓ '+a); passes.push(a); }
+      else { log('❌ '+a+' — '+r.status); errors.push(a); }
+    }catch(e){ log('⚠ '+a+' — '+e.message); warns.push(a); }
+  }
+
+  log('\n=== Done ===');
+  const st = document.getElementById('status');
+  if(errors.length) st.innerHTML='<span class="fail">❌ '+errors.length+' error(s) found — see log</span>';
+  else if(warns.length) st.innerHTML='<span class="warn">⚠ Checks passed with '+warns.length+' warning(s)</span>';
+  else st.innerHTML='<span class="ok">✅ All checks passed</span>';
+}
+runChecks();
+</script>
+</body></html>

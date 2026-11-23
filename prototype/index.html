@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Doctor — Prototype</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Google Sans', Arial, sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2d4a 50%, #0a1628 100%);
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #fff;
+    }
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(77,184,255,0.25);
+      border-radius: 20px;
+      padding: 40px 36px;
+      max-width: 480px; width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 28px; font-weight: 800; color: #4db8ff; margin-bottom: 6px; }
+    .subtitle { color: #a8d4ff; font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+    .demo-badge {
+      display: inline-block; background: #ff6b35; color: #fff;
+      font-size: 11px; font-weight: 700; padding: 3px 10px;
+      border-radius: 12px; margin-bottom: 24px; letter-spacing: 1px;
+    }
+    .start-btn {
+      display: block; width: 100%;
+      background: linear-gradient(90deg, #1a7adb, #4db8ff);
+      color: #fff; font-size: 16px; font-weight: 700;
+      padding: 14px; border: none; border-radius: 12px;
+      cursor: pointer; text-decoration: none;
+      margin-bottom: 12px; transition: opacity .2s;
+    }
+    .start-btn:hover { opacity: .88; }
+    .grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; margin-top: 24px;
+    }
+    .grid a {
+      background: rgba(77,184,255,0.1); border: 1px solid rgba(77,184,255,0.2);
+      color: #a8d4ff; font-size: 12px; padding: 8px 10px;
+      border-radius: 8px; text-decoration: none; transition: background .2s;
+    }
+    .grid a:hover { background: rgba(77,184,255,0.22); color: #fff; }
+    .bonus { margin-top: 16px; }
+    .bonus-title { font-size: 11px; color: #4db8ff; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .footer { margin-top: 28px; font-size: 11px; color: #4a7a9b; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">⚕️</div>
+    <h1>E Doctor</h1>
+    <p class="subtitle">Clickable HTML Prototype — 16 Screens + 3 Bonus</p>
+    <span class="demo-badge">⚠ DEMO ONLY — No Real Backend</span>
+
+    <a class="start-btn" href="01-welcome.html">▶ Launch App (Start from Welcome)</a>
+    <a class="start-btn" href="04-dashboard.html" style="background:rgba(255,255,255,0.1);border:1px solid #4db8ff40;">🏠 Jump to Dashboard</a>
+
+    <div class="grid">
+      <a href="01-welcome.html">1. Welcome</a>
+      <a href="02-login.html">2. Log In</a>
+      <a href="03-signup.html">3. Sign Up</a>
+      <a href="04-dashboard.html">4. Dashboard</a>
+      <a href="05-scanner.html">5. Medicine Scan</a>
+      <a href="06-scan-confirm.html">6. Scan Confirm</a>
+      <a href="07-auth-result.html">7. Auth Result</a>
+      <a href="08-price-search.html">8. Price Search</a>
+      <a href="09-price-compare.html">9. Price Compare</a>
+      <a href="10-rx-reader.html">10. Rx Reader</a>
+      <a href="11-rx-review.html">11. Rx Review</a>
+      <a href="12-symptom-ai.html">12. Symptom AI</a>
+      <a href="13-profile.html">13. Profile / Alerts</a>
+      <a href="14-schedule.html">14. Schedule</a>
+    </div>
+
+    <div class="bonus">
+      <div class="bonus-title">Bonus Screens</div>
+      <div class="grid">
+        <a href="B1-med-info.html">B1. Med Info</a>
+        <a href="B2-alternatives.html">B2. Alternatives</a>
+        <a href="B3-help.html" style="grid-column:1/-1">B3. Help &amp; Support</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      All data is simulated. No medicine verification, pricing,<br>
+      or prescriptions shown here are real or medically accurate.<br>
+      Original screen folders are untouched.
+    </div>
+  </div>
+</body>
+</html>

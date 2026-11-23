@@ -1,0 +1,581 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-container": "#fdfcff", "tertiary-fixed-dim": "#b9c8db", "on-secondary": "#ffffff", "inverse-surface": "#213145", "surface-bright": "#f8f9ff", "primary-container": "#2170e4", "on-surface-variant": "#424754", "on-primary-fixed": "#001a42", "tertiary": "#4f5d6e", "primary-fixed": "d8e2ff", "primary-fixed-dim": "#adc6ff", "on-primary": "#ffffff", "surface-dim": "#cbdbf5", "secondary": "#565e74", "on-surface": "#0b1c30", "outline": "#727785", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "background": "#f8f9ff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#004395", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#0e1d2b", "inverse-on-surface": "#eaf1ff", "on-primary-container": "#fefcff", "inverse-primary": "#adc6ff", "outline-variant": "#c2c6d6", "primary": "#0058be", "on-secondary-fixed": "#131b2e", "on-secondary-fixed-variant": "#3f465c", "surface-container-high": "#dce9ff", "surface": "#f8f9ff", "on-background": "#0b1c30", "secondary-fixed": "#dae2fd", "error": "#ba1a1a", "surface-container-low": "#eff4ff", "tertiary-container": "#677687", "on-tertiary-fixed-variant": "#3a4858", "secondary-fixed-dim": "#bec6e0", "secondary-container": "#dae2fd", "surface-tint": "#005ac2", "on-error": "#ffffff", "tertiary-fixed": "#d5e4f8", "on-error-container": "#93000a", "on-secondary-container": "#5c647a", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "gutter-mobile": "1rem", "space-sm": "0.5rem", "margin": "2rem", "space-xl": "2rem", "margin-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "body-sm": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.01em", fontWeight: "400" }], "display-lg-mobile": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["3rem", { lineHeight: "3.5rem", letterSpacing: "-0.025em", fontWeight: "700" }], "body-md": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0", fontWeight: "400" }], "headline-md": ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "600" }], "body-lg": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0", fontWeight: "400" }], "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["2rem", { lineHeight: "2.5rem", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-xl-mobile": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "headline-lg": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }], "label-sm": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.04em", fontWeight: "700" }], "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }], "headline-sm": ["1.125rem", { lineHeight: "1.5rem", letterSpacing: "-0.005em", fontWeight: "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Go back" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface truncate max-w-[200px]">Help, Support &amp; Photo Guide / Camera Alignment</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Clinical Help" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">help_outline</span></button><button aria-label="Clinical Safety Alert" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">verified_user</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface px-gutter-mobile min-h-screen"><div class="flex flex-col w-full pb-10">
+<!-- Search & Filter Bar -->
+<div class="relative w-full mt-2 mb-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[20px] pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-10 bg-surface-container-lowest text-on-surface placeholder:text-outline text-body-md font-body-md rounded-lg shadow-sm focus:outline-none focus:bg-surface-container-low transition-all" id="guide-search-input" placeholder="Search capture guides, barcodes, safety..." type="search">
+<button aria-label="Clear search" class="absolute right-3 hidden text-outline hover:text-on-surface" id="clear-search-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Notice Banner: Capture Standards -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mb-6 shadow-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">document_scanner</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs mb-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Capture Standards</span>
+<span class="font-label-sm text-label-sm text-outline">• AI-Assisted OCR</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Clinical verification accuracy depends on razor-sharp contrast and intact edge boundaries. Follow calibrated framing criteria below before diagnosis submission.
+        </p>
+</div>
+</div>
+</div>
+<!-- Section 1: Interactive Photo Capture Best Practices -->
+<div class="w-full mb-6">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">center_focus_strong</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Camera Alignment &amp; Standards</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-2 py-0.5 rounded-full">4 Rules</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+      Compare correct framing against common optical scanning errors to prevent medication identification false-negatives.
+    </p>
+<!-- Guide Cards Stack -->
+<div class="flex flex-col gap-4">
+<!-- Card 1: Lighting & Reflections -->
+<div class="guide-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">wb_sunny</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">1. Lighting &amp; Specular Glare</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Surface Finish</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+          Avoid harsh on-axis camera flash over glossy blister foils and coated pill cartons. Natural diffuse lighting keeps active ingredient microtext readable.
+        </p>
+<!-- Good vs Bad Visual Comparison -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Good Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A clean pharmaceutical blister package laid under soft daylight window lighting with no camera flash glare, showing crisp readable black typographic text and silver foil background in clinical blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYf9N8yS4dt1e-AqYf72hXkgYrSYybT5f6yWv-h9RARElpx9ScNKJFtlFgr9DmjkoPyJR01eO4ltu_59Mkw_HIHXod0b_8ZoBMRpwbhTFd5rvKoyi0m87UXkkwxf9KgvK8mrUjVePRLNkH314zFpFKxw2vtePCNZygoDLSY2AYl1WZ6GlmImLBXJvCHiCqpnGk8mUFD0Vfgv6CMU3QRP68gyjdJYcQuygn3TGu6CO32wkAGX23YyUiAw">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-[#15803D]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Diffuse Day</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#15803D]">
+<span class="material-symbols-outlined text-[14px]">done</span>
+<span class="font-label-sm text-label-sm font-semibold">Even Ambience</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Angled slightly to deflect sheen.</span>
+</div>
+<!-- Bad Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Close up photo of an overexposed pill blister pack with an intense white camera flashlight glare obscuring drug name text and reflecting harshly in clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkiQRpdJ3pEBTYuqWrxpIGeOLWf2mNq_DOEUwsj81N0U-XIqITVnGWiQJmaWI5qWhWX4OV85XXVQfB_zkBS-qniAFfH2T-yumzmpgzsr46BlPrJ-glnCkWzLwn9pBhnO3pAX338rFv6hy5srA2wSevwlPv1SFjwBHJBaxzu9y8dm2FOyaODDBBYLUv5evjenhJj6cA35Bj5hSVBI5ThBLO8dzaiJHMEj0XOG2ldqxfJtQ6lQBIHH6WZA">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-error" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span>Direct Flash</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[14px]">close</span>
+<span class="font-label-sm text-label-sm font-semibold">Blown Out Glare</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Occludes drug mg concentration.</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Barcode & GS1 Alignment -->
+<div class="guide-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">qr_code_scanner</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">2. Barcode &amp; GS1-128 Reticle</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">10–15 cm</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+          Lock the 2D DataMatrix square or linear GS1 barcode squarely inside the scanning crosshairs. Maintain orthogonal angle to avoid perspective tilt.
+        </p>
+<!-- Good vs Bad Visual Comparison -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Good Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner flex items-center justify-center bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="Top down aligned macro photograph of a prescription box DataMatrix GS1 2D barcode perfectly centered and sharp within focus reticle lines on clinical matte white board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyH1wR0maQHVvVQewVkwf6sTZbF0pJMlZtiF_FWSnuyEWL13ZvLbbuLl16yr0lCy6_8ohLM82Fq7eaIEXdXcRJ6PyvOIcvQ48R8ZF5s4z_h6lWf33U7w_3EBYaR1nkFe8nMyTHj-fCIqy8j47EAYEJIw1TbxdSm6rQ1m17sUM3mtB-aiVYlZ1q6uwIgwGWqNfRelBrRCoou6o3n_12-Ra43hK2o8CuikjyF20x0KWKJfVz3JHjlYPwQ">
+<!-- Simulated UI Reticle -->
+<div class="absolute inset-3 border-2 border-dashed border-primary/70 rounded-md pointer-events-none flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+</div>
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-[#15803D]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Square Angle</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#15803D]">
+<span class="material-symbols-outlined text-[14px]">crop_free</span>
+<span class="font-label-sm text-label-sm font-semibold">Centered Matrix</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">All 4 quiet-zone margins clear.</span>
+</div>
+<!-- Bad Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="Blurred distorted medicine carton barcode captured at an extreme 60 degree tilted side perspective angle with edge clipping in hospital lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtaqHaTA4pDg9RnyPflElCWe7oxRFo3cJrVmDufR6fWB_DvukiIM2D0GJNMGPW4-7Bqa1KhXLFRMwiz58mE3Eb-S4i9a1xl4g7SVrNYO7FS-aliTuRkD1_8I7jCe3c5gZW-4K7yt1s3CG37xVXirFAnVJbEz7G-iet80rd5QAWis7QjuCi7tGtW43-nVSMYEUKPeyyBC5RAMp111QB2imqawUXU4V1fBR7NWXiMzoFCcopQscxJZWWdg">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-error" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span>Skewed Angle</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span class="font-label-sm text-label-sm font-semibold">Tilted / Clipped</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Parallax breaks error-correction bits.</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Prescription Framing -->
+<div class="guide-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">3. Prescription 4-Corner Framing</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Full Sheet</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+          Lay paper flat on a dark contrasting background. Both the physician’s DEA/NPI validation stamp, signature, and date must be uncropped.
+        </p>
+<!-- Good vs Bad Visual Comparison -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Good Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Flat unfolded medical prescription document lying squarely on a dark navy desk surface with all four paper corners and physician signature visible from overhead camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6bLnhnzYYH0fyCu83hCnMTEaG9gljvlkiqhi4dr3A5-X8GDLs64qViAIru1BgedXZxjo12k4VNY5ttcSgUvhg4OQUCyGGkK-V7JaQM3cpIWXxElqYO4JkCZE8Lvkh70MSIsaQhGJLKjL_IQ9TezyUSdUg6IXjbPEZKv-Z-BJ1qIWQVgy2P-MDwXE8uszbhsSI79pg33PcqqTRnVx2g9RQi7_k9-11Zwol9f1jCVtxWJMBlisW2054RA">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-[#15803D]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Full Perimeter</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#15803D]">
+<span class="material-symbols-outlined text-[14px]">aspect_ratio</span>
+<span class="font-label-sm text-label-sm font-semibold">Contrast Surface</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Dark matte table aids edge snap.</span>
+</div>
+<!-- Bad Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Crumpled curled physician Rx slip cropped at bottom obscuring doctor signature line and pharmacy instructions with cast shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVi2XM_uEQxKTWWW0AUjR-lDwMF51am5uHXt6dVfhDrEt2lo_Z4PTkkg22buM9z0Vj1tB_8sFziDgovC59_kO_T1DnL4Z1moVxY9GyxPAl_139T7VYrYcEsqQTmM8adceOXFLhfbHT45rgngtwDtaB6czu_NAUqNBfS0No_imIEOwn51ru92jm0q3TWx8b_D87x6rMyGcR0PEIp8V2np4j6x0cZ6ad9tsqrGOa0p_OISZ4_ppZDMfMJw">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-error" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span>Crumpled / Cut</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[14px]">crop</span>
+<span class="font-label-sm text-label-sm font-semibold">Cut Signature</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Prevents legal Rx authorization.</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Lot & Expiry Legibility -->
+<div class="guide-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:shadow-md">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">event_busy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">4. Embossed Lot &amp; Expiration</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">#BATCH</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+          Embossed crimp marks and dot-matrix batch codes require angled side light so indentations create readable contrast shadows.
+        </p>
+<!-- Good vs Bad Visual Comparison -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Good Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Extreme macro shot of pharmaceutical carton flap showing clear black dot matrix printed EXP 2026-11 and LOT numbers with sharp typographic definition in sterile setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrNgzFh3GSWx2S82OqtmNAKqm82UAK58-iYhubw4oYA2LNOiqzeFRz43VKYbsakl4eeKeXhjtdG-11Eu1E6S_JrJuiWDMpqVInItswfeMSv2MaC2VQ59bGEogfs_x917lrLX8Wz3g7wPwLhMfRgpUfNSk9h-s018PZBtoPjR95CrScdRT7RJ5wTDcGS-vugVVc_wqDTe_QkuUz1TkU6frfwDP4p4POd5m0sMPba44F_OoZ54Cs3smzsA">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-[#15803D]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Tactile Focus</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#15803D]">
+<span class="material-symbols-outlined text-[14px]">pin</span>
+<span class="font-label-sm text-label-sm font-semibold">Crisp Batch Digits</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Enables automated recall verification.</span>
+</div>
+<!-- Bad Case -->
+<div class="flex flex-col rounded-lg bg-surface-container-low p-2">
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-1.5 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Out of focus macro photo of blurry white stamped numbers on white carton cardboard with unreadable smudged numbers due to close camera blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRhQIMHuYkWYrXLNW8ktkXVJl7ko9lGN-Ink8LA70ZesRGsb8Ii7BgSJc_9uLkrR2yW-0ChKVYwn3dPMIQtTWcr-TGnYNPnpv3v1DbabG6ZN1uolO-PwQ3UT732JmNMW7eGf-jWo1toFmZTyjNgMk4Z3iiFVNJJ-Ih5ID1TNNxe2uVs15gVjtt8Ob__nvFT-NC5RllRWRulaO0iFXVtZP4jYdDa1mPIRHendqgCiujIieN2HWf_Nw9A">
+<div class="absolute bottom-1.5 left-1.5 flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-error" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span>Lens Blur</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[14px]">blur_on</span>
+<span class="font-label-sm text-label-sm font-semibold">Smudged Stamp</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight mt-0.5">Triggers safety ambiguity flag.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Camera Simulator Widget -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-6">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">view_in_ar</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">Reticle Guidance Tool</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">Interactive</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">
+      Tap modes below to test how our neural pipeline tracks package geometry in real-time:
+    </p>
+<!-- Simulated Viewfinder Box -->
+<div class="relative w-full h-44 rounded-lg bg-surface-container-highest flex items-center justify-center overflow-hidden mb-3 transition-colors" id="sim-viewfinder">
+<!-- Background Grid -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#0058be 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- Reticle Box -->
+<div class="relative w-40 h-28 rounded-lg flex items-center justify-center transition-all duration-300" id="reticle-box">
+<!-- Corner Brackets -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl-sm transition-colors" id="bracket-tl"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr-sm transition-colors" id="bracket-tr"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl-sm transition-colors" id="bracket-bl"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br-sm transition-colors" id="bracket-br"></div>
+<!-- Simulated Scan Icon / Status -->
+<div class="flex flex-col items-center gap-1 text-center px-2">
+<span class="material-symbols-outlined text-primary text-[28px] transition-transform" id="sim-icon">barcode_scanner</span>
+<span class="font-label-sm text-label-sm text-on-surface" id="sim-feedback">Target Centered (Ready)</span>
+</div>
+</div>
+<!-- Distance Gauge Metric -->
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/90 px-2 py-0.5 rounded font-label-sm text-label-sm text-secondary tabular-nums">
+        Dist: <span class="font-bold text-on-surface" id="sim-dist">12 cm</span>
+</div>
+</div>
+<!-- Toggle Buttons -->
+<div class="grid grid-cols-3 gap-2">
+<button class="sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-primary text-on-primary transition-all" id="btn-mode-normal" onclick="setSimMode('normal')" type="button">
+        Ideal Focus
+      </button>
+<button class="sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface transition-all hover:bg-surface-container" id="btn-mode-close" onclick="setSimMode('too-close')" type="button">
+        Too Close (&lt;5cm)
+      </button>
+<button class="sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface transition-all hover:bg-surface-container" id="btn-mode-glare" onclick="setSimMode('glare')" type="button">
+        Flash Glare
+      </button>
+</div>
+</div>
+<!-- Section 2: Clinical & System FAQs (Accordion) -->
+<div class="w-full mb-6">
+<div class="flex items-center gap-space-xs mb-3">
+<span class="material-symbols-outlined text-primary text-[20px]">quiz</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Verification FAQ &amp; System Policies</h2>
+</div>
+<div class="flex flex-col gap-2.5" id="faq-accordion-group">
+<!-- FAQ Item 1 -->
+<div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button aria-expanded="false" class="w-full p-space-md flex items-center justify-between text-left focus:outline-none" onclick="toggleFaq(this)" type="button">
+<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] pr-2">
+            Does E Doctor chemically test pills for authenticity?
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 shrink-0 faq-icon">
+            expand_more
+          </span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<div class="p-3 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface-variant">
+<p class="mb-2">
+<strong>No.</strong> E Doctor operates via optical packaging verification, FDA National Drug Code (NDC) database validation, and tamper-evident serialization checks (GS1 / DataMatrix).
+            </p>
+<p>
+              It does <span class="font-semibold text-error">not</span> perform spectroscopic, chromatographic, or chemical reagent analysis. Never ingest pills from unverified or damaged blister packaging regardless of visual match results.
+            </p>
+</div>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button aria-expanded="false" class="w-full p-space-md flex items-center justify-between text-left focus:outline-none" onclick="toggleFaq(this)" type="button">
+<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] pr-2">
+            Why are pricing and copays labeled as "Demo Data"?
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 shrink-0 faq-icon">
+            expand_more
+          </span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<div class="p-3 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface-variant">
+<p class="mb-2">
+              Retail drug pricing integrations are undergoing regional pharmacy partner rollout (PBM switch clearinghouse compliance).
+            </p>
+<p>
+              Values currently displayed represent simulated benchmarks for clinical estimation. Consult your participating dispensing pharmacy for binding out-of-pocket co-pay amounts.
+            </p>
+</div>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button aria-expanded="false" class="w-full p-space-md flex items-center justify-between text-left focus:outline-none" onclick="toggleFaq(this)" type="button">
+<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] pr-2">
+            What if OCR misreads a handwritten dosage or Sig?
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 shrink-0 faq-icon">
+            expand_more
+          </span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<div class="p-3 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface-variant">
+<p class="mb-2">
+<strong>Mandatory Safety Rule:</strong> AI transcriptions of handwritten physician instructions ("Sig") are auxiliary aids.
+            </p>
+<p>
+              If the detected dose differs by even 1 milligram from the physical paper or pharmacy bottle label, <span class="font-semibold text-primary">defer strictly to the registered pharmacist label</span> or request manual staff reconciliation via the button below.
+            </p>
+</div>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-item bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button aria-expanded="false" class="w-full p-space-md flex items-center justify-between text-left focus:outline-none" onclick="toggleFaq(this)" type="button">
+<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] pr-2">
+            How is biometric and Rx document privacy preserved?
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 shrink-0 faq-icon">
+            expand_more
+          </span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<div class="p-3 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface-variant">
+<p>
+              Scanned frames are processed on-device whenever hardware permits. Transferred diagnostic images are encrypted using AES-256 in transit and rest, complying strictly with HIPAA § 164.312 privacy requirements.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Urgent Clinical Safety & Technical Support -->
+<div class="w-full flex flex-col gap-3">
+<!-- Emergency Callout Card -->
+<div class="w-full bg-error-container/40 rounded-xl p-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-error font-bold">Immediate Medical Emergency</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 mb-2">
+            For acute overdoses, poison exposure, or sudden adverse allergic reactions, bypass the app and dial emergency responders directly:
+          </p>
+<div class="flex flex-col gap-2 pt-1">
+<a class="w-full h-10 rounded-lg bg-error text-on-error flex items-center justify-center gap-2 font-label-lg text-label-lg hover:bg-opacity-90 active:scale-[0.99] transition-all" href="tel:911">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call 911 (Ambulance / Triage)</span>
+</a>
+<a class="w-full h-10 rounded-lg bg-surface-container-lowest text-error flex items-center justify-center gap-2 font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low active:scale-[0.99] transition-all" href="tel:18002221222">
+<span class="material-symbols-outlined text-[18px]">local_hospital</span>
+<span>Poison Control: 1-800-222-1222</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Support Panel -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">Technical Diagnostic Support</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+        Encountering recurring OCR alignment failures or unlisted national drug codes? Our clinical calibration engineers are on standby.
+      </p>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-1.5 h-10 px-2 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-lg text-label-lg transition-all" onclick="triggerSupportModal('glitch')" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">bug_report</span>
+<span class="truncate">Report Glitch</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 h-10 px-2 rounded-lg bg-primary text-on-primary hover:bg-opacity-95 font-label-lg text-label-lg shadow-sm transition-all" onclick="triggerSupportModal('contact')" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="truncate">App Support</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Micro Feedback Toast -->
+<div class="fixed bottom-6 left-4 right-4 bg-inverse-surface text-inverse-on-surface p-3 rounded-lg shadow-lg flex items-center gap-2 text-body-sm font-body-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-50" id="toast-notification">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<span class="flex-1" id="toast-message">Clinical action recorded.</span>
+</div>
+</div>
+<script>
+  // Accordion Toggle
+  function toggleFaq(btn) {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      content.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      content.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Camera Alignment Simulator Interactive States
+  function setSimMode(mode) {
+    const box = document.getElementById('reticle-box');
+    const feedback = document.getElementById('sim-feedback');
+    const icon = document.getElementById('sim-icon');
+    const dist = document.getElementById('sim-dist');
+    const tl = document.getElementById('bracket-tl');
+    const tr = document.getElementById('bracket-tr');
+    const bl = document.getElementById('bracket-bl');
+    const br = document.getElementById('bracket-br');
+
+    // Reset button states
+    document.querySelectorAll('.sim-btn').forEach(btn => {
+      btn.className = 'sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface transition-all hover:bg-surface-container';
+    });
+
+    if (mode === 'normal') {
+      document.getElementById('btn-mode-normal').className = 'sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-primary text-on-primary transition-all';
+      box.style.transform = 'scale(1)';
+      tl.className = 'absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl-sm transition-colors';
+      tr.className = 'absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr-sm transition-colors';
+      bl.className = 'absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl-sm transition-colors';
+      br.className = 'absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br-sm transition-colors';
+      icon.textContent = 'barcode_scanner';
+      icon.className = 'material-symbols-outlined text-primary text-[28px]';
+      feedback.textContent = 'Target Centered (Ready)';
+      feedback.className = 'font-label-sm text-label-sm text-on-surface';
+      dist.textContent = '12 cm';
+    } else if (mode === 'too-close') {
+      document.getElementById('btn-mode-close').className = 'sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-primary text-on-primary transition-all';
+      box.style.transform = 'scale(1.25)';
+      const alertClass = 'absolute w-4 h-4 border-2 border-error rounded-sm transition-colors';
+      tl.className = 'absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-error rounded-tl-sm transition-colors';
+      tr.className = 'absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-error rounded-tr-sm transition-colors';
+      bl.className = 'absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-error rounded-bl-sm transition-colors';
+      br.className = 'absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-error rounded-br-sm transition-colors';
+      icon.textContent = 'zoom_out';
+      icon.className = 'material-symbols-outlined text-error text-[28px]';
+      feedback.textContent = 'Step back 8cm for focus';
+      feedback.className = 'font-label-sm text-label-sm text-error font-semibold';
+      dist.textContent = '3.5 cm (Too Close)';
+    } else if (mode === 'glare') {
+      document.getElementById('btn-mode-glare').className = 'sim-btn py-1.5 px-2 rounded-lg text-center font-label-sm text-label-sm bg-primary text-on-primary transition-all';
+      box.style.transform = 'scale(0.95)';
+      tl.className = 'absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#B45309] rounded-tl-sm transition-colors';
+      tr.className = 'absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#B45309] rounded-tr-sm transition-colors';
+      bl.className = 'absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#B45309] rounded-bl-sm transition-colors';
+      br.className = 'absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#B45309] rounded-br-sm transition-colors';
+      icon.textContent = 'brightness_high';
+      icon.className = 'material-symbols-outlined text-[#B45309] text-[28px]';
+      feedback.textContent = 'Specular reflection detected';
+      feedback.className = 'font-label-sm text-label-sm text-[#B45309] font-semibold';
+      dist.textContent = 'Tilt Phone 15°';
+    }
+  }
+
+  // Toast Notifier
+  function showToast(msg, iconName = 'check_circle') {
+    const toast = document.getElementById('toast-notification');
+    const toastMsg = document.getElementById('toast-message');
+    const toastIcon = document.getElementById('toast-icon');
+
+    toastMsg.textContent = msg;
+    toastIcon.textContent = iconName;
+
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+    }, 3200);
+  }
+
+  function triggerSupportModal(type) {
+    if (type === 'glitch') {
+      showToast('Diagnostic log bundle compiled. Support ticket opened (#GL-8821).', 'bug_report');
+    } else {
+      showToast('Clinical support queue opened. Response estimate: < 2 mins.', 'headset_mic');
+    }
+  }
+
+  // Search Filter Interaction for FAQ and Guides
+  const searchInput = document.getElementById('guide-search-input');
+  const clearBtn = document.getElementById('clear-search-btn');
+
+  searchInput.addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase().trim();
+    if (query.length > 0) {
+      clearBtn.classList.remove('hidden');
+    } else {
+      clearBtn.classList.add('hidden');
+    }
+
+    const guideItems = document.querySelectorAll('.guide-item');
+    guideItems.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(query)) {
+        item.style.display = 'block';
+        if (query.length > 2) {
+          // auto-expand matches
+          const content = item.querySelector('.faq-content');
+          const btn = item.querySelector('button');
+          if (content) content.classList.remove('hidden');
+          if (btn) btn.setAttribute('aria-expanded', 'true');
+        }
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+
+  clearBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    clearBtn.classList.add('hidden');
+    document.querySelectorAll('.guide-item').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.faq-item').forEach(el => {
+      el.style.display = 'block';
+      const content = el.querySelector('.faq-content');
+      const btn = el.querySelector('button');
+      if (content) content.classList.add('hidden');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script></main><script src="nav.js"></script></body></html>
