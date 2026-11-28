@@ -50,7 +50,7 @@ function maskKey(key) {
 // ════════════════════════════════════════════════════════════════════════
 const gemini = {
   apiKey:   readEnv('GEMINI_API_KEY'),
-  model:    'gemini-1.5-flash',          // default model; override when needed
+  model:    'gemini-2.0-flash',          // default model; free tier compatible
   baseUrl:  'https://generativelanguage.googleapis.com/v1beta',
   isReady() {
     return this.apiKey !== null;
