@@ -93,11 +93,13 @@
           <span class="font-bold text-sm text-[#1b1c1f]">E Doctor</span>
           <span class="text-[#74767e] text-xs ml-1 truncate" id="topbar-screen-title"></span>
         </div>
-        <a href="tel:911"
-           class="flex items-center gap-1 bg-error-100 text-error px-3 py-1.5 rounded-full text-xs font-bold">
+        <button type="button"
+                onclick="ED.openEmergencyModal()"
+                class="flex items-center gap-1 bg-error-100 text-error px-3 py-1.5 rounded-full text-xs font-bold hover:bg-red-200 transition-colors cursor-pointer"
+                aria-label="Emergency SOS">
           <span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">emergency</span>
           SOS
-        </a>
+        </button>
       </header>
 
       <!-- ── Desktop Top Bar ───────────────────────────────────── -->
@@ -106,20 +108,44 @@
                      border-b border-[#c4c6d0] fixed top-8 left-0 lg:left-64 right-0 z-30 shadow-sm">
         <div class="text-sm text-[#44464e] flex-1" id="desktop-breadcrumb"></div>
         <!-- Global search -->
-        <div class="flex items-center gap-2 bg-surface-container rounded-xl px-3 h-9 w-72">
-          <span class="material-symbols-outlined text-[18px] text-[#74767e]">search</span>
-          <input placeholder="Search medicine, symptom…"
-                 class="bg-transparent text-sm w-full focus:outline-none text-[#1b1c1f] placeholder:text-[#74767e]"
-                 id="desktop-search">
+        <div class="relative w-72">
+          <div class="flex items-center gap-2 bg-surface-container rounded-xl px-3 h-9">
+            <button type="button" id="desktop-search-btn" class="flex items-center justify-center text-[#74767e] hover:text-primary" title="Search">
+              <span class="material-symbols-outlined text-[18px]">search</span>
+            </button>
+            <input placeholder="Search medicine, salt, symptom…"
+                   autocomplete="off"
+                   class="bg-transparent text-sm w-full focus:outline-none text-[#1b1c1f] placeholder:text-[#74767e]"
+                   id="desktop-search">
+          </div>
+          <!-- Desktop live results dropdown -->
+          <div id="desktop-search-drop"
+               class="hidden absolute top-11 left-0 right-0 bg-white rounded-xl shadow-xl border border-[#e8e7ef] z-50 overflow-hidden max-h-72 overflow-y-auto">
+          </div>
         </div>
-        <a href="tel:911"
-           class="flex items-center gap-1.5 bg-error-100 text-error px-4 py-2 rounded-full text-sm font-bold hover:bg-red-200 transition-colors">
+        <!-- Currency Switcher -->
+        <div class="flex items-center bg-surface-container rounded-xl p-0.5 text-xs font-bold border border-[#c4c6d0]/50" id="currency-switcher" title="Select Currency">
+          <button type="button" id="curr-btn-inr" onclick="ED.setCurrency('INR')"
+                  class="px-2.5 py-1 rounded-lg transition-all font-semibold text-xs">
+            ₹ INR
+          </button>
+          <button type="button" id="curr-btn-usd" onclick="ED.setCurrency('USD')"
+                  class="px-2.5 py-1 rounded-lg transition-all font-semibold text-xs">
+            $ USD
+          </button>
+        </div>
+        <button type="button"
+                onclick="ED.openEmergencyModal()"
+                class="flex items-center gap-1.5 bg-error-100 text-error px-4 py-2 rounded-full text-sm font-bold hover:bg-red-200 transition-colors cursor-pointer"
+                aria-label="Emergency SOS">
           <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1">emergency</span>
           Emergency SOS
-        </a>
-        <button onclick="ED.navigate('profile')"
-                class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow-sm">
-          SJ
+        </button>
+        <button id="topbar-avatar-btn"
+                onclick="ED.navigate('profile')"
+                class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow-sm"
+                title="Profile">
+          --
         </button>
       </header>
 
@@ -159,10 +185,82 @@
         </button>
       </div>
       <nav class="flex-1 px-3 py-4 space-y-1" id="mobile-sidebar-nav"></nav>
+      <!-- Mobile Currency Switcher -->
+      <div class="px-4 py-3 border-t border-[#c4c6d0] flex items-center justify-between">
+        <span class="text-xs font-semibold text-[#44464e]">Currency:</span>
+        <div class="flex items-center bg-surface-container rounded-lg p-0.5 text-xs font-bold border border-[#c4c6d0]/50" id="mobile-currency-switcher">
+          <button type="button" onclick="ED.setCurrency('INR')" class="px-2.5 py-1 rounded-md font-semibold text-xs" id="mobile-curr-inr">₹ INR</button>
+          <button type="button" onclick="ED.setCurrency('USD')" class="px-2.5 py-1 rounded-md font-semibold text-xs" id="mobile-curr-usd">$ USD</button>
+        </div>
+      </div>
       <div class="px-4 py-4 border-t border-[#c4c6d0]" id="mobile-sidebar-user"></div>
     </aside>
 
   </div><!-- /app-shell -->
+
+  <!-- ══ EMERGENCY SOS CONFIRMATION MODAL ════════════════════════════════ -->
+  <div id="emergency-modal"
+       class="hidden fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-red-200">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2 text-error font-extrabold text-lg">
+          <span class="material-symbols-outlined text-[26px]" style="font-variation-settings:'FILL' 1">emergency</span>
+          <span>Emergency Assistance</span>
+        </div>
+        <button type="button" onclick="ED.closeEmergencyModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-[#74767e]" title="Close">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-3 bg-red-50 rounded-xl border border-red-100 mb-4">
+        <p class="text-xs font-semibold text-red-800 leading-relaxed">
+          If you or someone nearby is experiencing acute trauma, severe bleeding, chest pain, or breathing distress, contact national emergency services immediately.
+        </p>
+      </div>
+
+      <div class="space-y-3 mb-5">
+        <!-- India 112 Unified Emergency Service -->
+        <a href="tel:112"
+           onclick="ED.confirmEmergencyCall('112')"
+           class="flex items-center justify-between p-3.5 bg-error text-white rounded-xl font-bold text-sm shadow-md hover:bg-red-700 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[24px]">call</span>
+            <div class="text-left">
+              <div class="leading-tight">Call 112 (National Emergency)</div>
+              <div class="text-xs font-normal text-red-100">Ambulance, Police, &amp; Fire (India)</div>
+            </div>
+          </div>
+          <span class="text-xs bg-white/20 px-2.5 py-1 rounded-full font-bold">112</span>
+        </a>
+
+        <!-- Direct Ambulance 102/108 -->
+        <a href="tel:102"
+           onclick="ED.confirmEmergencyCall('102')"
+           class="flex items-center justify-between p-3 bg-surface-container hover:bg-surface-container-high rounded-xl font-semibold text-sm text-[#1b1c1f] transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-[22px]">ambulance</span>
+            <div class="text-left">
+              <div class="leading-tight">Ambulance Direct (India)</div>
+              <div class="text-xs text-[#74767e]">Toll-Free Health Helpline</div>
+            </div>
+          </div>
+          <span class="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-bold">102 / 108</span>
+        </a>
+      </div>
+
+      <p class="text-[11px] text-[#74767e] text-center mb-5 leading-normal">
+        <strong>Notice:</strong> E Doctor provides digital health reference only and is not a substitute for certified medical emergency response or emergency dispatch.
+      </p>
+
+      <div class="flex gap-3">
+        <button type="button"
+                onclick="ED.closeEmergencyModal()"
+                class="btn-secondary w-full py-2.5 text-sm font-semibold">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ══ TOAST ════════════════════════════════════════════════════════════ -->
   <div id="toast"

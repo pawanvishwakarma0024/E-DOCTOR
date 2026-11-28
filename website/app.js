@@ -31,19 +31,51 @@ const ED = {
   _rxUploadedDoc: null,
   _rxMode: 'select',
 
+  _getInitials(name) {
+    if (!name || typeof name !== 'string') return '';
+    const clean = name.trim();
+    if (!clean) return '';
+    const parts = clean.split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '';
+    if (parts.length === 1) {
+      return parts[0].charAt(0).toUpperCase();
+    }
+    return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+  },
+
   getUser() {
     try {
       const saved = localStorage.getItem('ed_user_profile');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const u = JSON.parse(saved);
+        if (!u.initials && u.fullName) {
+          u.initials = this._getInitials(u.fullName);
+        }
+        return u;
+      }
     } catch (e) {}
+
+    const loggedIn = this.isLoggedIn();
+    if (loggedIn) {
+      return {
+        name: 'User',
+        fullName: 'Authenticated User',
+        id: 'ED-88412',
+        initials: 'U',
+        email: 'user@example.com',
+        joined: 'March 2025',
+        plan: 'E Doctor Free',
+      };
+    }
+
     return {
-      name: 'Sarah J.',
-      fullName: 'Sarah Johnson',
-      id: 'ED-88412',
-      initials: 'SJ',
-      email: 'sarah.j@demo.example',
-      joined: 'March 2025',
-      plan: 'E Doctor Free',
+      name: 'Guest User',
+      fullName: 'Guest User',
+      id: 'ED-GUEST',
+      initials: 'G',
+      email: 'guest@demo.example',
+      joined: 'Active Session',
+      plan: 'Guest Access',
     };
   },
 
@@ -63,30 +95,39 @@ const ED = {
   },
 
   login(nameOrEmail, optionalEmail) {
-    let user = this.getUser();
     const input = (nameOrEmail || '').trim();
+    let fullName = 'User';
+    let email = optionalEmail || 'user@example.com';
 
     if (input) {
-      const isEmail = input.includes('@');
-      let fullName = isEmail ? input.split('@')[0] : input;
-      fullName = fullName.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-
-      const parts = fullName.split(/\s+/).filter(Boolean);
-      const first = parts[0] || 'User';
-      const last = parts.length > 1 ? parts[parts.length - 1] : '';
-      const initials = ((first[0] || 'U') + (last ? last[0] : '')).toUpperCase();
-      const shortName = last ? `${first} ${last[0]}.` : first;
-
-      user = {
-        name: shortName,
-        fullName: fullName,
-        initials: initials || 'U',
-        email: optionalEmail || (isEmail ? input : `${first.toLowerCase()}@example.com`),
-        id: user.id && user.id !== 'ED-88412' ? user.id : 'ED-' + Math.floor(10000 + Math.random() * 90000),
-        joined: user.joined && user.id !== 'ED-88412' ? user.joined : new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-        plan: 'E Doctor Free',
-      };
+      if (input.includes('@')) {
+        email = input;
+        const namePart = input.split('@')[0].replace(/[._-]+/g, ' ');
+        fullName = namePart.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      } else {
+        fullName = input.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        if (!optionalEmail) {
+          const firstWord = fullName.split(/\s+/)[0].toLowerCase();
+          email = `${firstWord}@example.com`;
+        }
+      }
     }
+
+    const parts = fullName.split(/\s+/).filter(Boolean);
+    const first = parts[0] || 'User';
+    const last = parts.length > 1 ? parts[parts.length - 1] : '';
+    const initials = this._getInitials(fullName) || 'U';
+    const shortName = last ? `${first} ${last[0]}.` : first;
+
+    const user = {
+      name: shortName,
+      fullName: fullName,
+      initials: initials,
+      email: email,
+      id: 'ED-' + Math.floor(10000 + Math.random() * 90000),
+      joined: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      plan: 'E Doctor Free',
+    };
 
     this.setUser(user);
     this.navigate('dashboard');
@@ -94,27 +135,28 @@ const ED = {
   },
 
   signup(firstName, lastName, email) {
-    const first = (firstName || 'New').trim();
-    const last = (lastName || 'User').trim();
-    const fullName = `${first} ${last}`.trim();
-    const initials = ((first[0] || 'N') + (last ? last[0] : '')).toUpperCase();
-    const shortName = last ? `${first} ${last[0]}.` : first;
-    const newId = 'ED-' + Math.floor(10000 + Math.random() * 90000);
-    const joinedDate = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const first = (firstName || '').trim();
+    const last = (lastName || '').trim();
+    let fullName = `${first} ${last}`.trim();
+    if (!fullName) fullName = 'User';
+
+    const initials = this._getInitials(fullName) || 'U';
+    const shortName = last ? `${first} ${last[0]}.` : first || 'User';
+    const userEmail = (email || `${(first || 'user').toLowerCase()}@example.com`).trim();
 
     const user = {
       name: shortName,
       fullName: fullName,
       initials: initials,
-      email: (email || `${first.toLowerCase()}@example.com`).trim(),
-      id: newId,
-      joined: joinedDate,
+      email: userEmail,
+      id: 'ED-' + Math.floor(10000 + Math.random() * 90000),
+      joined: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
       plan: 'E Doctor Free',
     };
 
     this.setUser(user);
     this.navigate('dashboard');
-    this.toast(`Account created! Welcome, ${fullName}`);
+    this.toast(`Account created! Welcome, ${user.fullName}`);
   },
 
   logout() {
@@ -134,6 +176,117 @@ const ED = {
       this.login(newName.trim(), current.email);
       this._render('profile');
     }
+  },
+
+  /* ── Multi-Currency Support (INR ₹ & USD $) ─────────────────────── */
+  getCurrency() {
+    try {
+      return localStorage.getItem('ed_currency') || 'INR';
+    } catch (e) {
+      return 'INR';
+    }
+  },
+
+  setCurrency(curr) {
+    if (curr !== 'INR' && curr !== 'USD') curr = 'INR';
+    try {
+      localStorage.setItem('ed_currency', curr);
+    } catch (e) {}
+    this._updateCurrencyUI();
+    this._render(this.current);
+    this.toast(`Currency switched to ${curr === 'INR' ? '₹ INR (Indian Rupees)' : '$ USD (US Dollars)'}`);
+  },
+
+  _updateCurrencyUI() {
+    const curr = this.getCurrency();
+    const inrBtn = $('curr-btn-inr');
+    const usdBtn = $('curr-btn-usd');
+    if (inrBtn && usdBtn) {
+      if (curr === 'INR') {
+        inrBtn.className = 'px-2.5 py-1 rounded-lg transition-all font-semibold text-xs bg-primary text-white shadow-sm';
+        usdBtn.className = 'px-2.5 py-1 rounded-lg transition-all font-semibold text-xs text-[#44464e] hover:text-[#1b1c1f]';
+      } else {
+        inrBtn.className = 'px-2.5 py-1 rounded-lg transition-all font-semibold text-xs text-[#44464e] hover:text-[#1b1c1f]';
+        usdBtn.className = 'px-2.5 py-1 rounded-lg transition-all font-semibold text-xs bg-primary text-white shadow-sm';
+      }
+    }
+    const mInr = $('mobile-curr-inr');
+    const mUsd = $('mobile-curr-usd');
+    if (mInr && mUsd) {
+      if (curr === 'INR') {
+        mInr.className = 'px-2.5 py-1 rounded-md font-semibold text-xs bg-primary text-white shadow-sm';
+        mUsd.className = 'px-2.5 py-1 rounded-md font-semibold text-xs text-[#44464e]';
+      } else {
+        mInr.className = 'px-2.5 py-1 rounded-md font-semibold text-xs text-[#44464e]';
+        mUsd.className = 'px-2.5 py-1 rounded-md font-semibold text-xs bg-primary text-white shadow-sm';
+      }
+    }
+  },
+
+  getExchangeRate() {
+    try {
+      const cached = localStorage.getItem('ed_fx_usd_inr');
+      const cachedTime = localStorage.getItem('ed_fx_time');
+      if (cached && cachedTime && (Date.now() - parseInt(cachedTime)) < 24 * 3600 * 1000) {
+        return parseFloat(cached) || 86.50;
+      }
+    } catch (e) {}
+    return 86.50; // Reference conversion rate (1 USD = 86.50 INR)
+  },
+
+  async updateExchangeRate() {
+    try {
+      const res = await fetch('https://open.er-api.com/v6/latest/USD');
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.rates?.INR) {
+          localStorage.setItem('ed_fx_usd_inr', data.rates.INR.toString());
+          localStorage.setItem('ed_fx_time', Date.now().toString());
+        }
+      }
+    } catch (e) {}
+  },
+
+  formatPrice(amount, originalCurrency = 'USD') {
+    if (amount === null || amount === undefined || isNaN(amount)) return '—';
+    const num = Number(amount);
+    const targetCurr = this.getCurrency();
+    const rate = this.getExchangeRate();
+    let converted = num;
+
+    if (originalCurrency === 'USD' && targetCurr === 'INR') {
+      converted = num * rate;
+    } else if (originalCurrency === 'INR' && targetCurr === 'USD') {
+      converted = num / rate;
+    }
+
+    if (targetCurr === 'INR') {
+      return '₹' + converted.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    } else {
+      return '$' + converted.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+  },
+
+  /* ── Emergency SOS (India 112 Confirmation Flow) ─────────────────── */
+  openEmergencyModal() {
+    const modal = $('emergency-modal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeEmergencyModal() {
+    const modal = $('emergency-modal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  confirmEmergencyCall(number = '112') {
+    this.closeEmergencyModal();
+    this.toast(`Connecting to Emergency Helpline (${number})…`, 3500);
   },
 
   _stopCamera() {
@@ -312,9 +465,23 @@ const ED = {
       alternatives:'Alternatives', help:'Help & Support',
     };
     const label = titles[route] || route;
-    $('topbar-screen-title').textContent = '/ ' + label;
-    $('desktop-breadcrumb').innerHTML =
-      `E Doctor <span class="text-[#1a6fdb] font-semibold ml-1">/ ${label}</span>`;
+    const titleEl = $('topbar-screen-title');
+    if (titleEl) titleEl.textContent = '/ ' + label;
+    const breadEl = $('desktop-breadcrumb');
+    if (breadEl) {
+      breadEl.innerHTML =
+        `E Doctor <span class="text-[#1a6fdb] font-semibold ml-1">/ ${label}</span>`;
+    }
+
+    // Dynamic top-right user initials avatar
+    const user = this.getUser();
+    const avatarBtn = $('topbar-avatar-btn');
+    if (avatarBtn) {
+      avatarBtn.textContent = user.initials || 'U';
+      avatarBtn.title = `${user.fullName || user.name || 'User'} (${user.email || ''})`;
+    }
+
+    this._updateCurrencyUI();
   },
 
   toast(msg, ms=2800) {
@@ -605,12 +772,16 @@ SCREENS.dashboard = () => `
   <div class="section pt-4">
     <div class="relative max-w-2xl">
       <div class="flex items-center gap-3 bg-surface-container rounded-xl px-4 h-12">
-        ${icon('search','text-[22px] text-[#74767e]')}
+        <button type="button" id="dash-search-btn" class="flex items-center justify-center text-[#74767e] hover:text-primary cursor-pointer" title="Search">
+          ${icon('search','text-[22px]')}
+        </button>
         <input id="dash-search-input"
                placeholder="Search medicine name, salt, or symptom…"
                autocomplete="off"
                class="bg-transparent flex-1 text-[15px] focus:outline-none text-[#1b1c1f] placeholder:text-[#74767e]">
-        ${icon('mic','text-[20px] text-[#74767e] cursor-pointer')}
+        <button type="button" onclick="ED.toast('Voice search is listening (demo)…')" class="flex items-center justify-center text-[#74767e] hover:text-primary" title="Voice Search">
+          ${icon('mic','text-[20px] cursor-pointer')}
+        </button>
       </div>
       <!-- FDA live results dropdown -->
       <div id="dash-search-drop"
@@ -628,7 +799,7 @@ SCREENS.dashboard = () => `
         { label:'Active alerts',val:'2',     icon:'campaign',        color:'text-red-600 bg-red-50'     },
         { label:'Scans done',   val:'3',     icon:'barcode_scanner', color:'text-green-600 bg-green-50' },
         { label:'Rx pending',   val:'1',     icon:'document_scanner',color:'text-purple-600 bg-purple-50'},
-        { label:'Price saved',  val:'$37',   icon:'savings',         color:'text-orange-600 bg-orange-50'},
+        { label:'Price saved',  val: ED.formatPrice(37), icon:'savings', color:'text-orange-600 bg-orange-50'},
       ].map(s => `
         <div class="card p-4 flex flex-col items-center text-center gap-2">
           <div class="w-10 h-10 rounded-full flex items-center justify-center ${s.color}">
@@ -1099,7 +1270,7 @@ SCREENS['price-search'] = () => `
           <tr class="cursor-pointer hover:bg-blue-50" onclick="ED.navigate('price-compare')">
             <td><div class="font-semibold">${DEMO.prices.brand.name}</div><div class="text-xs text-[#74767e]">Brand Name</div></td>
             <td>GSK</td>
-            <td class="text-right font-bold">\$${DEMO.prices.brand.price.toFixed(2)}</td>
+            <td class="text-right font-bold">${ED.formatPrice(DEMO.prices.brand.price)}</td>
             <td><span class="badge badge-neutral text-xs">Reference</span></td>
           </tr>
           ${DEMO.prices.generics.map(g=>`
@@ -1109,7 +1280,7 @@ SCREENS['price-search'] = () => `
                 <div class="text-xs text-[#74767e]">Generic ${g.approved?'✓ Approved':''}</div>
               </td>
               <td>${g.name.split('—')[1]?.trim()||'—'}</td>
-              <td class="text-right font-bold text-green-700">\$${g.price.toFixed(2)}</td>
+              <td class="text-right font-bold text-green-700">${ED.formatPrice(g.price)}</td>
               <td><span class="badge badge-success text-xs">Save ${g.savings}%</span></td>
             </tr>`).join('')}
         </tbody>
@@ -1143,16 +1314,16 @@ SCREENS['price-compare'] = () => `
     <div class="grid sm:grid-cols-2 gap-4 mt-4">
       <div class="card p-5 border-2 border-[#e8e7ef]">
         <div class="badge badge-neutral mb-3">Brand Name</div>
-        <div class="text-2xl font-extrabold text-[#1b1c1f] mb-1">\$${DEMO.prices.brand.price.toFixed(2)}</div>
+        <div class="text-2xl font-extrabold text-[#1b1c1f] mb-1">${ED.formatPrice(DEMO.prices.brand.price)}</div>
         <div class="text-sm text-[#44464e]">${DEMO.prices.brand.name}</div>
         <div class="text-xs text-[#74767e] mt-1">${DEMO.prices.brand.per}</div>
       </div>
       <div class="card p-5 border-2 border-green-400 bg-green-50">
         <div class="badge badge-success mb-3">${icon('star','text-[14px]')} Best Generic — Save ${DEMO.prices.generics[2].savings}%</div>
-        <div class="text-2xl font-extrabold text-green-700 mb-1">\$${DEMO.prices.generics[2].price.toFixed(2)}</div>
+        <div class="text-2xl font-extrabold text-green-700 mb-1">${ED.formatPrice(DEMO.prices.generics[2].price)}</div>
         <div class="text-sm text-[#44464e]">${DEMO.prices.generics[2].name}</div>
         <div class="text-xs text-green-700 font-semibold mt-1">
-          Save \$${(DEMO.prices.brand.price - DEMO.prices.generics[2].price).toFixed(2)} per pack
+          Save ${ED.formatPrice(DEMO.prices.brand.price - DEMO.prices.generics[2].price)} per pack
         </div>
       </div>
     </div>
@@ -1173,7 +1344,7 @@ SCREENS['price-compare'] = () => `
               <td><div class="font-semibold">${g.name.split('—')[0].trim()}</div></td>
               <td class="text-sm">${g.name.split('—')[1]?.trim()||'—'}</td>
               <td><span class="badge ${g.approved?'badge-success':'badge-neutral'} text-xs">${g.approved?'A-rated':'B'}</span></td>
-              <td class="text-right font-bold text-green-700">\$${g.price.toFixed(2)}</td>
+              <td class="text-right font-bold text-green-700">${ED.formatPrice(g.price)}</td>
               <td><span class="badge badge-success text-xs">-${g.savings}%</span></td>
               <td>
                 <button class="btn-outline btn-sm !px-3 !py-1.5 text-xs"
@@ -1198,7 +1369,7 @@ SCREENS['price-compare'] = () => `
               <div class="text-xs text-[#74767e]">${p.distance}</div>
             </div>
             <div class="text-right">
-              <div class="font-bold ${p.stock?'text-green-700':'text-[#74767e]'}">\$${p.price.toFixed(2)}</div>
+              <div class="font-bold ${p.stock?'text-green-700':'text-[#74767e]'}">${ED.formatPrice(p.price)}</div>
               <div class="text-xs ${p.stock?'text-green-600':'text-red-500'}">${p.stock?'In stock':'Out of stock'}</div>
             </div>
           </div>`).join('')}
@@ -1667,7 +1838,17 @@ SCREENS.profile = () => `
           </div>
         </div>
         <div class="card p-5">
-          <h3 class="section-title">Privacy Settings</h3>
+          <h3 class="section-title">Preferences &amp; Privacy</h3>
+          <div class="flex items-center justify-between py-2 border-b border-[#e8e7ef]">
+            <div>
+              <div class="text-sm font-semibold text-[#1b1c1f]">Currency</div>
+              <div class="text-xs text-[#74767e]">Active price display</div>
+            </div>
+            <select onchange="ED.setCurrency(this.value)" class="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-[#c4c6d0] bg-white cursor-pointer text-primary">
+              <option value="INR" ${ED.getCurrency()==='INR'?'selected':''}>₹ INR (Indian Rupee)</option>
+              <option value="USD" ${ED.getCurrency()==='USD'?'selected':''}>$ USD (US Dollar)</option>
+            </select>
+          </div>
           ${[
             { label:'Cloud Sync',              on:false },
             { label:'Anonymous Price Alerts',  on:true  },
@@ -2014,7 +2195,7 @@ SCREENS.alternatives = () => `
               <td class="text-xs font-mono">${a.atc}</td>
               <td><span class="badge ${a.equiv==='A'?'badge-success':'badge-warning'} text-xs">${a.equiv}-rated</span></td>
               <td>${a.form}</td>
-              <td class="text-right font-bold text-green-700">\$${a.price.toFixed(2)}</td>
+              <td class="text-right font-bold text-green-700">${ED.formatPrice(a.price)}</td>
               <td>
                 <button class="btn-outline btn-sm !px-3 !py-1.5 text-xs"
                         onclick="ED.navigate('price-compare')">
@@ -2490,5 +2671,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       ED.navigate('welcome', false);
     }
+  }
+
+  // Wire the always-visible desktop topbar search (not part of any screen)
+  if (typeof attachFdaSearch === 'function') {
+    attachFdaSearch('desktop-search', 'desktop-search-drop', (brand, generic, isSymptom) => {
+      if (isSymptom) {
+        ED.navigate('symptom-ai');
+        ED.toast(`Searching symptom: ${brand}`);
+      } else {
+        window._fdaSelectedDrug = brand;
+        ED.navigate('med-info');
+      }
+    });
+  }
+
+  // Kick off background exchange-rate refresh (non-blocking)
+  if (typeof ED.updateExchangeRate === 'function') {
+    ED.updateExchangeRate().catch(() => {});
   }
 });
