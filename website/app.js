@@ -1726,7 +1726,7 @@ SCREENS['symptom-ai'] = () => `
     </div>
     <span class="badge badge-warning text-xs">${icon('info','text-[14px]')} Not Medical Advice</span>
   </div>
-  ${demoNote('This is NOT a substitute for professional medical advice. Responses are simulated demo outputs.')}
+  ${demoNote('Powered by Google Gemini AI. Responses are for informational purposes only — NOT a substitute for professional medical advice. For emergencies, call 112.')}
 
   <div class="grid lg:grid-cols-3 gap-6 mt-4 section pt-3">
     <!-- Chat window -->
@@ -2282,40 +2282,112 @@ EVENTS['dashboard'] = () => {
 };
 
 EVENTS['symptom-ai'] = () => {
-  // Allow pressing Enter to "send" chat message
+  // Reset chat history whenever the screen is opened fresh
+  ED._chatHistory = [];
+
+  // Allow pressing Enter to send chat message
   const inp = $('chat-input');
   if (inp) {
     inp.addEventListener('keydown', e => {
-      if (e.key === 'Enter') ED.addChatMessage();
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        ED.addChatMessage();
+      }
     });
   }
 };
 
-/* ── Chat add message ─────────────────────────────────────────────────── */
-ED.addChatMessage = function() {
+/* ── Chat history (kept in memory for multi-turn context) ─────────────── */
+ED._chatHistory = [];
+
+/* ── Chat add message — calls Gemini backend API ─────────────────────── */
+ED.addChatMessage = async function() {
   const inp = $('chat-input');
   const box = $('chat-messages');
   if (!inp || !box || !inp.value.trim()) return;
+
   const text = inp.value.trim();
   inp.value = '';
-  const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  inp.disabled = true;
+
+  const now = () => new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+
+  // Append user message
   box.innerHTML += `<div>
-    <div class="chat-bubble-user">${text}</div>
-    <div class="chat-timestamp text-right">${now}</div>
+    <div class="chat-bubble-user">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+    <div class="chat-timestamp text-right">${now()}</div>
   </div>`;
   box.scrollTop = box.scrollHeight;
-  // Auto AI reply after 800ms
-  setTimeout(() => {
+
+  // Add to history
+  ED._chatHistory.push({ role: 'user', text });
+
+  // Show typing indicator
+  const typingId = 'typing-' + Date.now();
+  box.innerHTML += `<div id="${typingId}">
+    <div class="chat-bubble-ai flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay:0ms"></span>
+      <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay:150ms"></span>
+      <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay:300ms"></span>
+    </div>
+  </div>`;
+  box.scrollTop = box.scrollHeight;
+
+  try {
+    // POST to backend — Gemini API key stays on the server
+    const res = await fetch('/api/ai/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: ED._chatHistory }),
+    });
+
+    const data = await res.json();
+
+    // Remove typing indicator
+    const typingEl = document.getElementById(typingId);
+    if (typingEl) typingEl.remove();
+
+    if (!res.ok || data.error) {
+      const errMsg = data.error || 'AI service unavailable. Please try again.';
+      box.innerHTML += `<div>
+        <div class="chat-bubble-ai text-red-600">
+          ${icon('error','text-[16px]')} ${errMsg}
+        </div>
+        <div class="chat-timestamp">${now()}</div>
+      </div>`;
+    } else {
+      const reply = data.reply || '';
+      // Store assistant reply in history
+      ED._chatHistory.push({ role: 'assistant', text: reply });
+
+      // Render reply — convert newlines to <br> for readability
+      const safeReply = reply
+        .replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/\n/g,'<br>');
+
+      box.innerHTML += `<div>
+        <div class="chat-bubble-ai">${safeReply}
+          <span class="block mt-2 text-xs text-[#74767e]">⚠ AI guidance only — not a substitute for professional medical advice.</span>
+        </div>
+        <div class="chat-timestamp">${now()}</div>
+      </div>`;
+    }
+  } catch (err) {
+    // Remove typing indicator on network error
+    const typingEl = document.getElementById(typingId);
+    if (typingEl) typingEl.remove();
+
     box.innerHTML += `<div>
-      <div class="chat-bubble-ai">
-        Thank you for that information. Based on your symptoms, I recommend resting and staying hydrated.
-        If symptoms persist beyond 72 hours or worsen, please consult a licensed physician.
-        <span class="block mt-2 text-xs text-[#74767e]">⚠ This is not medical advice — demo response only.</span>
+      <div class="chat-bubble-ai text-red-600">
+        ${icon('wifi_off','text-[16px]')} Could not reach AI service. Make sure the local server is running (<code>node server.js</code>).
       </div>
-      <div class="chat-timestamp">${now}</div>
+      <div class="chat-timestamp">${now()}</div>
     </div>`;
+  } finally {
+    inp.disabled = false;
+    inp.focus();
     box.scrollTop = box.scrollHeight;
-  }, 800);
+  }
 };
 
 /* ── Medicine info tab switcher (supports 5 tabs incl. dosage) ────────── */

@@ -34,17 +34,11 @@ router.get('/ai/health', (req, res) => {
   });
 });
 
-// ── Gemini Chat (stub — not implemented) ─────────────────────────────────
+// ── Gemini Chat ───────────────────────────────────────────────────────────
 // POST /api/ai/chat
-router.post('/ai/chat', (req, res) => {
-  if (!apiConfig.gemini.isReady()) {
-    return res.status(503).json({
-      error: 'Gemini API is not configured. Please set GEMINI_API_KEY in .env',
-    });
-  }
-  // TODO: Implement Gemini conversational chat
-  res.status(501).json({ error: 'Gemini chat route not yet implemented.' });
-});
+// Body: { messages: [{role, text}] }
+const { handleChat } = require('./routes/gemini');
+router.post('/ai/chat', handleChat);
 
 // ── Infermedica Symptom Assessment (stub — not implemented) ───────────────
 // POST /api/ai/symptoms
