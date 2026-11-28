@@ -31,6 +31,29 @@ const ED = {
   _rxUploadedDoc: null,
   _rxMode: 'select',
 
+  getUser() {
+    try {
+      const saved = localStorage.getItem('ed_user_profile');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return {
+      name: 'Sarah J.',
+      fullName: 'Sarah Johnson',
+      id: 'ED-88412',
+      initials: 'SJ',
+      email: 'sarah.j@demo.example',
+      joined: 'March 2025',
+      plan: 'E Doctor Free',
+    };
+  },
+
+  setUser(userObj) {
+    try {
+      localStorage.setItem('ed_user_profile', JSON.stringify(userObj));
+      localStorage.setItem('ed_user_logged_in', 'true');
+    } catch (e) {}
+  },
+
   isLoggedIn() {
     try {
       return localStorage.getItem('ed_user_logged_in') === 'true';
@@ -39,22 +62,78 @@ const ED = {
     }
   },
 
-  login(nameOrEmail) {
-    try {
-      localStorage.setItem('ed_user_logged_in', 'true');
-      if (nameOrEmail) localStorage.setItem('ed_user_email', nameOrEmail);
-    } catch (e) {}
+  login(nameOrEmail, optionalEmail) {
+    let user = this.getUser();
+    const input = (nameOrEmail || '').trim();
+
+    if (input) {
+      const isEmail = input.includes('@');
+      let fullName = isEmail ? input.split('@')[0] : input;
+      fullName = fullName.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+      const parts = fullName.split(/\s+/).filter(Boolean);
+      const first = parts[0] || 'User';
+      const last = parts.length > 1 ? parts[parts.length - 1] : '';
+      const initials = ((first[0] || 'U') + (last ? last[0] : '')).toUpperCase();
+      const shortName = last ? `${first} ${last[0]}.` : first;
+
+      user = {
+        name: shortName,
+        fullName: fullName,
+        initials: initials || 'U',
+        email: optionalEmail || (isEmail ? input : `${first.toLowerCase()}@example.com`),
+        id: user.id && user.id !== 'ED-88412' ? user.id : 'ED-' + Math.floor(10000 + Math.random() * 90000),
+        joined: user.joined && user.id !== 'ED-88412' ? user.joined : new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        plan: 'E Doctor Free',
+      };
+    }
+
+    this.setUser(user);
     this.navigate('dashboard');
-    this.toast(`Signed in as ${nameOrEmail || DEMO.user.name}`);
+    this.toast(`Welcome back, ${user.name}!`);
+  },
+
+  signup(firstName, lastName, email) {
+    const first = (firstName || 'New').trim();
+    const last = (lastName || 'User').trim();
+    const fullName = `${first} ${last}`.trim();
+    const initials = ((first[0] || 'N') + (last ? last[0] : '')).toUpperCase();
+    const shortName = last ? `${first} ${last[0]}.` : first;
+    const newId = 'ED-' + Math.floor(10000 + Math.random() * 90000);
+    const joinedDate = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+    const user = {
+      name: shortName,
+      fullName: fullName,
+      initials: initials,
+      email: (email || `${first.toLowerCase()}@example.com`).trim(),
+      id: newId,
+      joined: joinedDate,
+      plan: 'E Doctor Free',
+    };
+
+    this.setUser(user);
+    this.navigate('dashboard');
+    this.toast(`Account created! Welcome, ${fullName}`);
   },
 
   logout() {
     try {
       localStorage.removeItem('ed_user_logged_in');
       localStorage.removeItem('ed_user_email');
+      localStorage.removeItem('ed_user_profile');
     } catch (e) {}
     this.toast('You have been signed out.');
     this.navigate('welcome');
+  },
+
+  editProfilePrompt() {
+    const current = this.getUser();
+    const newName = prompt('Enter your full name:', current.fullName);
+    if (newName && newName.trim()) {
+      this.login(newName.trim(), current.email);
+      this._render('profile');
+    }
   },
 
   _stopCamera() {
@@ -173,13 +252,14 @@ const ED = {
       ${groups.support.map(n => this._navItem(n, route)).join('')}
     `;
     const loggedIn = this.isLoggedIn();
+    const user = this.getUser();
     const userHTML = `
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-          ${DEMO.user.initials}
+          ${user.initials}
         </div>
         <div class="min-w-0">
-          <div class="font-semibold text-sm text-[#1b1c1f] truncate">${DEMO.user.name}</div>
+          <div class="font-semibold text-sm text-[#1b1c1f] truncate">${user.name}</div>
           <div class="text-xs text-[#74767e] truncate">${loggedIn ? 'Signed In' : 'Guest Mode'}</div>
         </div>
       </div>
@@ -406,11 +486,11 @@ SCREENS.login = () => `
       <h1 class="text-2xl font-extrabold text-[#1b1c1f]">Welcome back</h1>
       <p class="text-[#44464e] mt-1">Sign in to your E Doctor account</p>
     </div>
-    ${demoNote('Demo mode: enter any email and password to continue.')}
+    ${demoNote('Enter your name or email below to log in.')}
     <div class="card p-8 mt-6">
       <div class="input-group">
-        <label class="input-label">Email address</label>
-        <input class="input" type="email" placeholder="you@example.com" id="login-email" value="sarah.j@demo.example">
+        <label class="input-label">Email address or Name</label>
+        <input class="input" type="text" placeholder="e.g. John Doe or john@example.com" id="login-email">
       </div>
       <div class="input-group">
         <label class="input-label">Password</label>
@@ -419,7 +499,7 @@ SCREENS.login = () => `
       <div class="flex justify-end mb-6">
         <button class="text-sm text-primary font-semibold hover:underline">Forgot password?</button>
       </div>
-      <button class="btn-primary w-full" onclick="const em = document.getElementById('login-email')?.value || 'sarah.j@demo.example'; ED.login(em);">
+      <button class="btn-primary w-full" onclick="const em = (document.getElementById('login-email')?.value || '').trim(); ED.login(em || 'User');">
         ${icon('login','text-[20px]')} Log In
       </button>
       <div class="flex items-center gap-4 my-6">
@@ -427,8 +507,8 @@ SCREENS.login = () => `
         <span class="text-sm text-[#74767e]">or</span>
         <div class="flex-1 border-t border-[#e8e7ef]"></div>
       </div>
-      <button class="btn-secondary w-full" onclick="ED.login('sarah.j@demo.example');">
-        ${icon('account_circle','text-[20px]')} Continue with Google
+      <button class="btn-secondary w-full" onclick="ED.login('Sarah Johnson');">
+        ${icon('account_circle','text-[20px]')} Demo: Continue as Sarah Johnson
       </button>
     </div>
     <p class="text-center text-sm text-[#44464e] mt-6">
@@ -467,21 +547,20 @@ SCREENS.signup = () => `
       <h1 class="text-2xl font-extrabold text-[#1b1c1f]">Create your account</h1>
       <p class="text-[#44464e] mt-1">Free forever • No credit card required</p>
     </div>
-    ${demoNote('Demo mode: form is for display only. Click "Create Account" to continue.')}
     <div class="card p-8 mt-6">
       <div class="grid sm:grid-cols-2 gap-4">
         <div class="input-group !mb-0">
           <label class="input-label">First name</label>
-          <input class="input" type="text" placeholder="Sarah" value="Sarah">
+          <input class="input" type="text" id="signup-first" placeholder="e.g. John" value="">
         </div>
         <div class="input-group !mb-0">
           <label class="input-label">Last name</label>
-          <input class="input" type="text" placeholder="Johnson" value="Johnson">
+          <input class="input" type="text" id="signup-last" placeholder="e.g. Doe" value="">
         </div>
       </div>
       <div class="input-group mt-4">
         <label class="input-label">Email address</label>
-        <input class="input" type="email" placeholder="you@example.com">
+        <input class="input" type="email" id="signup-email" placeholder="you@example.com">
       </div>
       <div class="input-group">
         <label class="input-label">Password</label>
@@ -495,7 +574,7 @@ SCREENS.signup = () => `
         <input type="checkbox" class="mt-1 accent-primary" checked>
         <span class="text-sm text-[#44464e]">I agree to the <a class="text-primary underline" href="#">Terms of Service</a> and <a class="text-primary underline" href="#">Privacy Policy</a>.</span>
       </label>
-      <button class="btn-primary w-full" onclick="ED.login('Sarah Johnson')">
+      <button class="btn-primary w-full" onclick="const fn = document.getElementById('signup-first')?.value; const ln = document.getElementById('signup-last')?.value; const em = document.getElementById('signup-email')?.value; ED.signup(fn, ln, em);">
         ${icon('arrow_forward','text-[20px]')} Create Account
       </button>
     </div>
@@ -516,7 +595,7 @@ SCREENS.dashboard = () => `
     <div>
       <div class="flex items-center gap-2 mb-1">
         <span class="inline-block w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-        <h1 class="page-title">Good morning, ${DEMO.user.name}</h1>
+        <h1 class="page-title">Good morning, ${ED.getUser().name}</h1>
       </div>
       <p class="page-subtitle">Your Health, Smarter &amp; Safer</p>
     </div>
@@ -1567,19 +1646,25 @@ SCREENS.profile = () => `
         <div class="card p-6 text-center">
           <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center
                       text-white text-2xl font-extrabold mx-auto mb-4 shadow-md">
-            ${DEMO.user.initials}
+            ${ED.getUser().initials}
           </div>
-          <h2 class="font-extrabold text-xl text-[#1b1c1f]">${DEMO.user.fullName}</h2>
-          <p class="text-sm text-[#74767e] mt-1">ID: ${DEMO.user.id}</p>
-          <p class="text-xs text-[#74767e] mt-1">Member since ${DEMO.user.joined}</p>
+          <h2 class="font-extrabold text-xl text-[#1b1c1f]">${ED.getUser().fullName}</h2>
+          <p class="text-sm text-[#74767e] mt-1">ID: ${ED.getUser().id}</p>
+          <p class="text-xs text-[#74767e] mt-1">Member since ${ED.getUser().joined}</p>
           <div class="flex gap-2 justify-center mt-4">
             <span class="badge badge-success">${icon('enhanced_encryption','text-[14px]')} HIPAA AES-256</span>
             <span class="badge badge-info">${icon('cloud_off','text-[14px]')} Local Only</span>
           </div>
-          <button onclick="ED.isLoggedIn() ? ED.logout() : ED.navigate('login')"
-                  class="btn-outline w-full text-xs mt-4 flex items-center justify-center gap-1.5 py-2 ${ED.isLoggedIn() ? '!text-red-600 !border-red-200 hover:!bg-red-50' : '!text-primary'}">
-            ${icon(ED.isLoggedIn() ? 'logout' : 'login','text-[16px]')} ${ED.isLoggedIn() ? 'Sign Out of Account' : 'Sign In'}
-          </button>
+          <div class="flex flex-col gap-2 mt-4">
+            <button onclick="ED.editProfilePrompt()"
+                    class="btn-secondary w-full text-xs flex items-center justify-center gap-1.5 py-2">
+              ${icon('edit','text-[16px]')} Edit Name / Profile
+            </button>
+            <button onclick="ED.isLoggedIn() ? ED.logout() : ED.navigate('login')"
+                    class="btn-outline w-full text-xs flex items-center justify-center gap-1.5 py-2 ${ED.isLoggedIn() ? '!text-red-600 !border-red-200 hover:!bg-red-50' : '!text-primary'}">
+              ${icon(ED.isLoggedIn() ? 'logout' : 'login','text-[16px]')} ${ED.isLoggedIn() ? 'Sign Out of Account' : 'Sign In'}
+            </button>
+          </div>
         </div>
         <div class="card p-5">
           <h3 class="section-title">Privacy Settings</h3>
